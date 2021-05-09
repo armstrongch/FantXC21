@@ -14,6 +14,7 @@ namespace FantXC21
         [STAThread]
         static void Main()
         {
+            //Test: is git set up properly
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
