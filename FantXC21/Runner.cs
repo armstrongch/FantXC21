@@ -17,7 +17,8 @@ namespace FantXC21
         public int bonusDistanceAboveEighty { get; private set; }
         public Dictionary<cardType, int> cardEnergyModifiers { get; private set; }
         public Dictionary<cardType, int> cardDistanceModifiers { get; private set; }
-        
+        public CPU_Logic cpu_logic { get; private set; }
+
         private List<Card> deck;
         private List<Card> hand;
         private List<Card> discard;
@@ -30,6 +31,8 @@ namespace FantXC21
             exhaustion = 0;
             exhaustionReduction = 0;
             bonusDistanceAboveEighty = 0;
+
+            cpu_logic = new CPU_Logic();
 
             deck = new List<Card>();
             deck.Add(new Card(cardType.RUN));
@@ -77,9 +80,31 @@ namespace FantXC21
             }
         }
 
+        public Workout selectWorkout(List<Workout> WorkoutList)
+        {
+            switch (cpu_logic.WorkoutSelectionType)
+            {
+                case WorkoutSelectionType.RECOVER_OVER_50:
+                default:
+                    if (exhaustion < 50)
+                    {
+                        return WorkoutList.Where(w => w.cost == 0).FirstOrDefault();
+                    }
+                    else
+                    {
+                        return WorkoutList.Where(w => w.cost > 0).FirstOrDefault();
+                    }
+            }
+        }
+
         public void doWorkout(Workout workout)
         {
-            exhaustion += workout.cost;
+            int calculatedExhaustion = workout.cost - exhaustionReduction;
+            if (calculatedExhaustion > 0)
+            {
+                exhaustion += calculatedExhaustion;
+            }
+
             switch(workout.workoutType)
             {
                 case workoutType.EASY_RUN:

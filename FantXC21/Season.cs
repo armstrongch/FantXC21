@@ -34,6 +34,18 @@ namespace FantXC21
             weeks = new List<Week>();
         }
 
+        public void SelectAndPerformWorkoutsForAllCPURunners(Week week)
+        {
+            foreach (Runner runner in runners)
+            {
+                if (!runner.isPlayer)
+                {
+                    runner.doWorkout(runner.selectWorkout(week.WorkoutSelection_One));
+                    runner.doWorkout(runner.selectWorkout(week.WorkoutSelection_Two));
+                }
+            }
+        }
+
         public void AddWeekToSeason()
         {
             Week week = new Week(

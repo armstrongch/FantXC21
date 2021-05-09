@@ -15,3 +15,4 @@ C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\ref\FantXC21.dll
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.pdb
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.genruntimeconfig.cache
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.csprojAssemblyReference.cache
