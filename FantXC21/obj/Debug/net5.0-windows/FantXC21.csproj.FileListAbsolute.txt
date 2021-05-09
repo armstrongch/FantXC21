@@ -5,7 +5,6 @@ C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\FantXC21.
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\FantXC21.dll
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\ref\FantXC21.dll
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\FantXC21.pdb
-C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.Form1.resources
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.csproj.GenerateResource.cache
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.AssemblyInfoInputs.cache
@@ -16,3 +15,5 @@ C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\ref\FantX
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.pdb
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.genruntimeconfig.cache
 C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.csprojAssemblyReference.cache
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.frm_title.resources
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.TitleForm - Copy.resources

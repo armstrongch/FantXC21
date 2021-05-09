@@ -8,7 +8,7 @@ namespace FantXC21
 {
     enum WorkoutSelectionType
     {
-        RECOVER_OVER_50 //Recover if 
+        RECOVER_OVER_5 //Recover if exhaustion is over 5, otherwise pick a random non-recovery workout
     }
     class CPU_Logic
     {

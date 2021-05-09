@@ -84,9 +84,9 @@ namespace FantXC21
         {
             switch (cpu_logic.WorkoutSelectionType)
             {
-                case WorkoutSelectionType.RECOVER_OVER_50:
+                case WorkoutSelectionType.RECOVER_OVER_5:
                 default:
-                    if (exhaustion < 50)
+                    if (exhaustion < 5)
                     {
                         return WorkoutList.Where(w => w.cost == 0).FirstOrDefault();
                     }

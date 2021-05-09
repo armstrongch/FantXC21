@@ -16,7 +16,10 @@ namespace FantXC21
         
         public Season()
         {
-            weekNum = 0;
+            weekNum = 1;
+            runners = new List<Runner>();
+            workouts = new List<Workout>();
+
             runners.Add(new Runner(Runner.names[0], true));
             for (int i = 1; i < 99; i += 1)
             {

@@ -6,4 +6,10 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="TitleForm - Copy.resx">
+      <DependentUpon>frm_title.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
