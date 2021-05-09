@@ -1,0 +1,17 @@
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\FantXC21.exe
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\FantXC21.deps.json
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\FantXC21.runtimeconfig.json
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\FantXC21.runtimeconfig.dev.json
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\FantXC21.dll
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\ref\FantXC21.dll
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\bin\Debug\net5.0-windows\FantXC21.pdb
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.Form1.resources
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.csproj.GenerateResource.cache
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.AssemblyInfoInputs.cache
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.AssemblyInfo.cs
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.csproj.CoreCompileInputs.cache
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.dll
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\ref\FantXC21.dll
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.pdb
+C:\Users\chris\Source\Repos\FantXC21\FantXC21\obj\Debug\net5.0-windows\FantXC21.genruntimeconfig.cache
