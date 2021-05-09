@@ -14,7 +14,12 @@ namespace FantXC21
         [STAThread]
         static void Main()
         {
-            //Test: is git set up properly
+            /*
+             * Using git, github:
+             * $ git add . 
+             * $ git commit -m "comment"
+             * $ git push origin main
+             */
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
