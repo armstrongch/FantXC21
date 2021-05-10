@@ -13,6 +13,9 @@ namespace FantXC21
     public partial class frm_title : Form
     {
         private Season season;
+        private Workout selectedWorkout;
+        private List<Workout> workoutList;
+        private int workoutNum;
 
         public frm_title()
         {
@@ -41,6 +44,9 @@ namespace FantXC21
 
         private void showWorkoutPanel(List<Workout> workoutList)
         {
+            this.workoutNum = 1;
+            this.workoutList = workoutList;
+
             lbl_weekInfo.Text = "Week #" + season.weekNum.ToString();
             lbl_championshipInfo.Text = (13 - season.weekNum).ToString() + " races until the championship";
 
@@ -84,11 +90,15 @@ namespace FantXC21
                     workoutStyle,
                     workout.text,
                     workout.cost.ToString() + " exhaustion"
-                    );
+                );
             }
 
             dg_workoutSelection.DataSource = workoutSelectionDataTable;
             dg_workoutSelection.Columns["Description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            selectedWorkout = workoutList[0];
+            dg_workoutSelection.Rows[0].Selected = true;
+
             showPanel("pnl_workout");
         }
 
@@ -99,6 +109,21 @@ namespace FantXC21
                 + "Finish in the top 3 in " + Season.numTopThreeFinishesToQualify.ToString() + " different races\n"
                 + "Accumulate a total of " + Season.pointsToQualify.ToString() + " points";
             MessageBox.Show(championshipStatus);
+        }
+
+        private void dg_workoutSelection_Changed(object sender, EventArgs e)
+        {
+            if (dg_workoutSelection.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dg_workoutSelection.SelectedRows[0];
+                selectedWorkout = workoutList.Where(w => w.name == selectedRow.Cells[0].Value.ToString()).FirstOrDefault();
+                btn_selectWorkout.Text = "Select " + selectedWorkout.name + " (" + workoutNum.ToString() + " of 2)";
+            }
+        }
+
+        private void btn_selectWorkout_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

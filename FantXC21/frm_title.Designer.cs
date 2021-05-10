@@ -36,6 +36,7 @@
             this.lbl_gameTitle = new System.Windows.Forms.Label();
             this.lbl_presents = new System.Windows.Forms.Label();
             this.pnl_workout = new System.Windows.Forms.Panel();
+            this.btn_selectWorkout = new System.Windows.Forms.Button();
             this.dg_workoutSelection = new System.Windows.Forms.DataGridView();
             this.cbl_topThreeFinishes = new System.Windows.Forms.CheckedListBox();
             this.bar_championshipPoints = new System.Windows.Forms.ProgressBar();
@@ -93,6 +94,7 @@
             // 
             // pnl_workout
             // 
+            this.pnl_workout.Controls.Add(this.btn_selectWorkout);
             this.pnl_workout.Controls.Add(this.dg_workoutSelection);
             this.pnl_workout.Controls.Add(this.cbl_topThreeFinishes);
             this.pnl_workout.Controls.Add(this.bar_championshipPoints);
@@ -103,6 +105,17 @@
             this.pnl_workout.Name = "pnl_workout";
             this.pnl_workout.Size = new System.Drawing.Size(775, 426);
             this.pnl_workout.TabIndex = 4;
+            // 
+            // btn_selectWorkout
+            // 
+            this.btn_selectWorkout.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_selectWorkout.Location = new System.Drawing.Point(187, 380);
+            this.btn_selectWorkout.Name = "btn_selectWorkout";
+            this.btn_selectWorkout.Size = new System.Drawing.Size(589, 46);
+            this.btn_selectWorkout.TabIndex = 6;
+            this.btn_selectWorkout.Text = "Select Workout";
+            this.btn_selectWorkout.UseVisualStyleBackColor = true;
+            this.btn_selectWorkout.Click += new System.EventHandler(this.btn_selectWorkout_Click);
             // 
             // dg_workoutSelection
             // 
@@ -140,8 +153,9 @@
             this.dg_workoutSelection.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dg_workoutSelection.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dg_workoutSelection.RowTemplate.Height = 25;
-            this.dg_workoutSelection.Size = new System.Drawing.Size(590, 274);
+            this.dg_workoutSelection.Size = new System.Drawing.Size(590, 318);
             this.dg_workoutSelection.TabIndex = 5;
+            this.dg_workoutSelection.SelectionChanged += new System.EventHandler(this.dg_workoutSelection_Changed);
             // 
             // cbl_topThreeFinishes
             // 
@@ -225,6 +239,7 @@
         private System.Windows.Forms.ProgressBar bar_championshipPoints;
         private System.Windows.Forms.CheckedListBox cbl_topThreeFinishes;
         private System.Windows.Forms.DataGridView dg_workoutSelection;
+        private System.Windows.Forms.Button btn_selectWorkout;
     }
 }
 
