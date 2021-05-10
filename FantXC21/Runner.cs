@@ -18,6 +18,7 @@ namespace FantXC21
         public Dictionary<cardType, int> cardEnergyModifiers { get; private set; }
         public Dictionary<cardType, int> cardDistanceModifiers { get; private set; }
         public CPU_Logic cpu_logic { get; private set; }
+        public List<RaceResults> raceResults { get; private set; }
 
         private List<Card> deck;
         private List<Card> hand;
@@ -54,6 +55,7 @@ namespace FantXC21
             startingEnergy = 100;
             cardEnergyModifiers = new Dictionary<cardType, int>();
             cardDistanceModifiers = new Dictionary<cardType, int>();
+            raceResults = new List<RaceResults>();
         }
 
         private void updateEnergyModifier(cardType type, int modifier)
@@ -165,6 +167,29 @@ namespace FantXC21
                     bonusDistanceAboveEighty += 100;
                     break;
             }
+        }
+
+        public int getTotalPoints()
+        {
+            int totalPoints = 0;
+            foreach(RaceResults result in raceResults)
+            {
+                totalPoints += 1 + result.numberOfRunners - result.finishPosition;
+            }
+            return totalPoints;
+        }
+
+        public int getNumTopThreeFinishes()
+        {
+            int numTopThrees = 0;
+            foreach(RaceResults results in raceResults)
+            {
+                if (results.finishPosition <= 3)
+                {
+                    numTopThrees += 1;
+                }
+            }
+            return numTopThrees;
         }
 
         public static readonly string[] names = {

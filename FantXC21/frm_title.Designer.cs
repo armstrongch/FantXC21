@@ -1,5 +1,4 @@
-﻿
-namespace FantXC21
+﻿namespace FantXC21
 {
     partial class frm_title
     {
@@ -34,7 +33,11 @@ namespace FantXC21
             this.lbl_gameTitle = new System.Windows.Forms.Label();
             this.lbl_presents = new System.Windows.Forms.Label();
             this.pnl_workout = new System.Windows.Forms.Panel();
-            this.lbl_seasonInfo = new System.Windows.Forms.Label();
+            this.cbl_topThreeFinishes = new System.Windows.Forms.CheckedListBox();
+            this.bar_championshipPoints = new System.Windows.Forms.ProgressBar();
+            this.btn_qualificationInfo = new System.Windows.Forms.Button();
+            this.lbl_championshipInfo = new System.Windows.Forms.Label();
+            this.lbl_weekInfo = new System.Windows.Forms.Label();
             this.pnl_titleScreen.SuspendLayout();
             this.pnl_workout.SuspendLayout();
             this.SuspendLayout();
@@ -85,21 +88,68 @@ namespace FantXC21
             // 
             // pnl_workout
             // 
-            this.pnl_workout.Controls.Add(this.lbl_seasonInfo);
+            this.pnl_workout.Controls.Add(this.cbl_topThreeFinishes);
+            this.pnl_workout.Controls.Add(this.bar_championshipPoints);
+            this.pnl_workout.Controls.Add(this.btn_qualificationInfo);
+            this.pnl_workout.Controls.Add(this.lbl_championshipInfo);
+            this.pnl_workout.Controls.Add(this.lbl_weekInfo);
             this.pnl_workout.Location = new System.Drawing.Point(12, 12);
             this.pnl_workout.Name = "pnl_workout";
             this.pnl_workout.Size = new System.Drawing.Size(775, 426);
             this.pnl_workout.TabIndex = 4;
             // 
-            // lbl_seasonInfo
+            // cbl_topThreeFinishes
             // 
-            this.lbl_seasonInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_seasonInfo.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_seasonInfo.Location = new System.Drawing.Point(0, 1);
-            this.lbl_seasonInfo.Name = "lbl_seasonInfo";
-            this.lbl_seasonInfo.Size = new System.Drawing.Size(100, 23);
-            this.lbl_seasonInfo.TabIndex = 0;
-            this.lbl_seasonInfo.Text = "test";
+            this.cbl_topThreeFinishes.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbl_topThreeFinishes.FormattingEnabled = true;
+            this.cbl_topThreeFinishes.Items.AddRange(new object[] {
+            "Top-3 Finish #1",
+            "Top-3 Finish #2",
+            "Top-3 Finish #3",
+            "Top-3 Finish #4"});
+            this.cbl_topThreeFinishes.Location = new System.Drawing.Point(1, 138);
+            this.cbl_topThreeFinishes.Name = "cbl_topThreeFinishes";
+            this.cbl_topThreeFinishes.Size = new System.Drawing.Size(176, 104);
+            this.cbl_topThreeFinishes.TabIndex = 4;
+            // 
+            // bar_championshipPoints
+            // 
+            this.bar_championshipPoints.Location = new System.Drawing.Point(1, 109);
+            this.bar_championshipPoints.Maximum = 160;
+            this.bar_championshipPoints.Name = "bar_championshipPoints";
+            this.bar_championshipPoints.Size = new System.Drawing.Size(176, 23);
+            this.bar_championshipPoints.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.bar_championshipPoints.TabIndex = 3;
+            // 
+            // btn_qualificationInfo
+            // 
+            this.btn_qualificationInfo.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_qualificationInfo.Location = new System.Drawing.Point(0, 56);
+            this.btn_qualificationInfo.Name = "btn_qualificationInfo";
+            this.btn_qualificationInfo.Size = new System.Drawing.Size(177, 46);
+            this.btn_qualificationInfo.TabIndex = 2;
+            this.btn_qualificationInfo.Text = "Qualification Info";
+            this.btn_qualificationInfo.UseVisualStyleBackColor = true;
+            this.btn_qualificationInfo.Click += new System.EventHandler(this.btn_qualificationInfo_Click);
+            // 
+            // lbl_championshipInfo
+            // 
+            this.lbl_championshipInfo.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_championshipInfo.Location = new System.Drawing.Point(1, 30);
+            this.lbl_championshipInfo.Name = "lbl_championshipInfo";
+            this.lbl_championshipInfo.Size = new System.Drawing.Size(774, 23);
+            this.lbl_championshipInfo.TabIndex = 1;
+            this.lbl_championshipInfo.Text = "champ_info_string";
+            // 
+            // lbl_weekInfo
+            // 
+            this.lbl_weekInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_weekInfo.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_weekInfo.Location = new System.Drawing.Point(1, 1);
+            this.lbl_weekInfo.Name = "lbl_weekInfo";
+            this.lbl_weekInfo.Size = new System.Drawing.Size(774, 29);
+            this.lbl_weekInfo.TabIndex = 0;
+            this.lbl_weekInfo.Text = "season_info_string";
             // 
             // frm_title
             // 
@@ -123,7 +173,11 @@ namespace FantXC21
         private System.Windows.Forms.Label lbl_gameTitle;
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.Panel pnl_workout;
-        private System.Windows.Forms.Label lbl_seasonInfo;
+        private System.Windows.Forms.Label lbl_weekInfo;
+        private System.Windows.Forms.Label lbl_championshipInfo;
+        private System.Windows.Forms.Button btn_qualificationInfo;
+        private System.Windows.Forms.ProgressBar bar_championshipPoints;
+        private System.Windows.Forms.CheckedListBox cbl_topThreeFinishes;
     }
 }
 

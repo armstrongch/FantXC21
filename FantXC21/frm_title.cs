@@ -18,14 +18,52 @@ namespace FantXC21
         {
             season = new Season();
             InitializeComponent();
-            pnl_titleScreen.Show();
-            pnl_workout.Hide();
+            showPanel("pnl_titleScreen");
         }
 
         private void btn_start_Click(object sender, EventArgs e)
         {
-            pnl_titleScreen.Hide();
-            pnl_workout.Show();
+            showWorkoutPanel();
+        }
+
+        private void showPanel(string panelName)
+        {
+            foreach(Control c in Controls)
+            {
+                if (c is Panel)
+                {
+                    if (c.Name == panelName) { c.Show(); }
+                    else { c.Hide(); }
+                }
+            }
+        }
+
+        private void showWorkoutPanel()
+        {
+            lbl_weekInfo.Text = "Week #" + season.weekNum.ToString();
+            lbl_championshipInfo.Text = (13 - season.weekNum).ToString() + " races until the championship";
+
+            Runner player = season.runners.Where(r => r.isPlayer).FirstOrDefault();
+            bar_championshipPoints.Value = player.getTotalPoints();
+            
+            int numTopThrees = player.getNumTopThreeFinishes();
+            if (numTopThrees > 4) { numTopThrees = 4; }
+            
+            for (int i = 0; i < numTopThrees; i += 1)
+            {
+                cbl_topThreeFinishes.SetItemChecked(i, true);
+            }
+
+            showPanel("pnl_workout");
+        }
+
+        private void btn_qualificationInfo_Click(object sender, EventArgs e)
+        {
+            string championshipStatus = 
+                "To qualify, you must meet 1 of the following benchmarks:\n"
+                + "Finish in the top 3 in " + Season.numTopThreeFinishesToQualify.ToString() + " different races\n"
+                + "Accumulate a total of " + Season.pointsToQualify.ToString() + " points";
+            MessageBox.Show(championshipStatus);
         }
     }
 }

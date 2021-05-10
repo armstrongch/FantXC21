@@ -9,10 +9,14 @@ namespace FantXC21
     class Season
     {
         public int weekNum { get; private set; }
-        private List<Runner> runners;
+        public List<Week> weeks { get; private set; }
+        public List<Runner> runners { get; private set; }
+       
         private List<Workout> workouts;
         public Random random;
-        public List<Week> weeks { get; private set; }
+
+        public const int pointsToQualify = 140;
+        public const int numTopThreeFinishesToQualify = 4;
         
         public Season()
         {
