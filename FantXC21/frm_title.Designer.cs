@@ -30,18 +30,17 @@ namespace FantXC21
         private void InitializeComponent()
         {
             this.pnl_titleScreen = new System.Windows.Forms.Panel();
-            this.pnl_workout = new System.Windows.Forms.Panel();
-            this.lbl_seasonInfo = new System.Windows.Forms.Label();
             this.btn_start = new System.Windows.Forms.Button();
             this.lbl_gameTitle = new System.Windows.Forms.Label();
             this.lbl_presents = new System.Windows.Forms.Label();
+            this.pnl_workout = new System.Windows.Forms.Panel();
+            this.lbl_seasonInfo = new System.Windows.Forms.Label();
             this.pnl_titleScreen.SuspendLayout();
             this.pnl_workout.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_titleScreen
             // 
-            this.pnl_titleScreen.Controls.Add(this.pnl_workout);
             this.pnl_titleScreen.Controls.Add(this.btn_start);
             this.pnl_titleScreen.Controls.Add(this.lbl_gameTitle);
             this.pnl_titleScreen.Controls.Add(this.lbl_presents);
@@ -49,24 +48,6 @@ namespace FantXC21
             this.pnl_titleScreen.Name = "pnl_titleScreen";
             this.pnl_titleScreen.Size = new System.Drawing.Size(775, 426);
             this.pnl_titleScreen.TabIndex = 0;
-            // 
-            // pnl_workout
-            // 
-            this.pnl_workout.Controls.Add(this.lbl_seasonInfo);
-            this.pnl_workout.Location = new System.Drawing.Point(0, 0);
-            this.pnl_workout.Name = "pnl_workout";
-            this.pnl_workout.Size = new System.Drawing.Size(775, 426);
-            this.pnl_workout.TabIndex = 4;
-            // 
-            // lbl_seasonInfo
-            // 
-            this.lbl_seasonInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_seasonInfo.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_seasonInfo.Location = new System.Drawing.Point(0, 1);
-            this.lbl_seasonInfo.Name = "lbl_seasonInfo";
-            this.lbl_seasonInfo.Size = new System.Drawing.Size(100, 23);
-            this.lbl_seasonInfo.TabIndex = 0;
-            this.lbl_seasonInfo.Text = "test";
             // 
             // btn_start
             // 
@@ -102,11 +83,30 @@ namespace FantXC21
             this.lbl_presents.Text = "Chris \'Turd Boomerang\' Armstrong presents:\r\n";
             this.lbl_presents.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pnl_workout
+            // 
+            this.pnl_workout.Controls.Add(this.lbl_seasonInfo);
+            this.pnl_workout.Location = new System.Drawing.Point(12, 12);
+            this.pnl_workout.Name = "pnl_workout";
+            this.pnl_workout.Size = new System.Drawing.Size(775, 426);
+            this.pnl_workout.TabIndex = 4;
+            // 
+            // lbl_seasonInfo
+            // 
+            this.lbl_seasonInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_seasonInfo.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_seasonInfo.Location = new System.Drawing.Point(0, 1);
+            this.lbl_seasonInfo.Name = "lbl_seasonInfo";
+            this.lbl_seasonInfo.Size = new System.Drawing.Size(100, 23);
+            this.lbl_seasonInfo.TabIndex = 0;
+            this.lbl_seasonInfo.Text = "test";
+            // 
             // frm_title
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pnl_workout);
             this.Controls.Add(this.pnl_titleScreen);
             this.Name = "frm_title";
             this.Text = " FantXC21";
