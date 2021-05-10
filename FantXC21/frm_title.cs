@@ -17,13 +17,14 @@ namespace FantXC21
         public frm_title()
         {
             season = new Season();
+            season.AddWeekToSeason();
             InitializeComponent();
             showPanel("pnl_titleScreen");
         }
 
         private void btn_start_Click(object sender, EventArgs e)
         {
-            showWorkoutPanel();
+            showWorkoutPanel(season.weeks.Last().WorkoutSelection_One);
         }
 
         private void showPanel(string panelName)
@@ -38,7 +39,7 @@ namespace FantXC21
             }
         }
 
-        private void showWorkoutPanel()
+        private void showWorkoutPanel(List<Workout> workoutList)
         {
             lbl_weekInfo.Text = "Week #" + season.weekNum.ToString();
             lbl_championshipInfo.Text = (13 - season.weekNum).ToString() + " races until the championship";
@@ -54,6 +55,40 @@ namespace FantXC21
                 cbl_topThreeFinishes.SetItemChecked(i, true);
             }
 
+            DataTable workoutSelectionDataTable = new DataTable();
+            workoutSelectionDataTable.Columns.Add("Workout Name");
+            workoutSelectionDataTable.Columns.Add("Type"); //Not actually workout type, this is based on the cost.
+            workoutSelectionDataTable.Columns.Add("Description");
+            workoutSelectionDataTable.Columns.Add("Cost");
+
+            foreach (Workout workout in workoutList)
+            {
+                string workoutStyle = "";
+                switch(workout.cost)
+                {
+                    case 0:
+                        workoutStyle = "Recovery";
+                        break;
+                    case 1:
+                        workoutStyle = "Speed";
+                        break;
+                    case 2:
+                        workoutStyle = "Pace";
+                        break;
+                    case 3:
+                        workoutStyle = "Endurance";
+                        break;
+                }
+                workoutSelectionDataTable.Rows.Add(
+                    workout.name,
+                    workoutStyle,
+                    workout.text,
+                    workout.cost.ToString() + " exhaustion"
+                    );
+            }
+
+            dg_workoutSelection.DataSource = workoutSelectionDataTable;
+            dg_workoutSelection.Columns["Description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             showPanel("pnl_workout");
         }
 

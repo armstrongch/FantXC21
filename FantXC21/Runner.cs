@@ -19,6 +19,7 @@ namespace FantXC21
         public Dictionary<cardType, int> cardDistanceModifiers { get; private set; }
         public CPU_Logic cpu_logic { get; private set; }
         public List<RaceResults> raceResults { get; private set; }
+        public List<workoutType> workouts { get; private set; }
 
         private List<Card> deck;
         private List<Card> hand;

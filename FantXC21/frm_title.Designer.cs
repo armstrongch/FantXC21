@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_titleScreen = new System.Windows.Forms.Panel();
             this.btn_start = new System.Windows.Forms.Button();
             this.lbl_gameTitle = new System.Windows.Forms.Label();
             this.lbl_presents = new System.Windows.Forms.Label();
             this.pnl_workout = new System.Windows.Forms.Panel();
+            this.dg_workoutSelection = new System.Windows.Forms.DataGridView();
             this.cbl_topThreeFinishes = new System.Windows.Forms.CheckedListBox();
             this.bar_championshipPoints = new System.Windows.Forms.ProgressBar();
             this.btn_qualificationInfo = new System.Windows.Forms.Button();
@@ -40,6 +44,7 @@
             this.lbl_weekInfo = new System.Windows.Forms.Label();
             this.pnl_titleScreen.SuspendLayout();
             this.pnl_workout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_workoutSelection)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_titleScreen
@@ -88,6 +93,7 @@
             // 
             // pnl_workout
             // 
+            this.pnl_workout.Controls.Add(this.dg_workoutSelection);
             this.pnl_workout.Controls.Add(this.cbl_topThreeFinishes);
             this.pnl_workout.Controls.Add(this.bar_championshipPoints);
             this.pnl_workout.Controls.Add(this.btn_qualificationInfo);
@@ -97,6 +103,45 @@
             this.pnl_workout.Name = "pnl_workout";
             this.pnl_workout.Size = new System.Drawing.Size(775, 426);
             this.pnl_workout.TabIndex = 4;
+            // 
+            // dg_workoutSelection
+            // 
+            this.dg_workoutSelection.AllowUserToAddRows = false;
+            this.dg_workoutSelection.AllowUserToDeleteRows = false;
+            this.dg_workoutSelection.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dg_workoutSelection.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_workoutSelection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dg_workoutSelection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_workoutSelection.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dg_workoutSelection.Location = new System.Drawing.Point(186, 56);
+            this.dg_workoutSelection.Name = "dg_workoutSelection";
+            this.dg_workoutSelection.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_workoutSelection.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dg_workoutSelection.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dg_workoutSelection.RowTemplate.Height = 25;
+            this.dg_workoutSelection.Size = new System.Drawing.Size(590, 274);
+            this.dg_workoutSelection.TabIndex = 5;
             // 
             // cbl_topThreeFinishes
             // 
@@ -162,6 +207,7 @@
             this.Text = " FantXC21";
             this.pnl_titleScreen.ResumeLayout(false);
             this.pnl_workout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dg_workoutSelection)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -178,6 +224,7 @@
         private System.Windows.Forms.Button btn_qualificationInfo;
         private System.Windows.Forms.ProgressBar bar_championshipPoints;
         private System.Windows.Forms.CheckedListBox cbl_topThreeFinishes;
+        private System.Windows.Forms.DataGridView dg_workoutSelection;
     }
 }
 
