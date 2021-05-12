@@ -56,6 +56,7 @@ namespace FantXC21
             cardEnergyModifiers = new Dictionary<cardType, int>();
             cardDistanceModifiers = new Dictionary<cardType, int>();
             raceResults = new List<RaceResults>();
+            workouts = new List<workoutType>();
         }
 
         public Card getModifiedCard(cardType type)
@@ -113,6 +114,8 @@ namespace FantXC21
             {
                 exhaustion += calculatedExhaustion;
             }
+
+            workouts.Add(workout.workoutType);
 
             switch(workout.workoutType)
             {

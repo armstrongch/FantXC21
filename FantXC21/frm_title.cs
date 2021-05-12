@@ -61,16 +61,25 @@ namespace FantXC21
                 cbl_topThreeFinishes.SetItemChecked(i, true);
             }
 
-            DataTable workoutSelectionDataTable = new DataTable();
-            workoutSelectionDataTable.Columns.Add("Workout Name");
-            workoutSelectionDataTable.Columns.Add("Type"); //Not actually workout type, this is based on the cost.
-            workoutSelectionDataTable.Columns.Add("Description");
-            workoutSelectionDataTable.Columns.Add("Cost (exhaustion)", typeof(int));
+            dg_workoutSelection.DataSource = getWorkoutList_DT(workoutList);
+            dg_workoutSelection.Columns["Description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            selectedWorkout = workoutList[0];
+            dg_workoutSelection.Rows[0].Selected = true;
+        }
+
+        private DataTable getWorkoutList_DT(List<Workout> workoutList)
+        {
+            DataTable workoutList_dt = new DataTable();
+            workoutList_dt.Columns.Add("Workout Name");
+            workoutList_dt.Columns.Add("Type"); //Not actually workout type, this is based on the cost.
+            workoutList_dt.Columns.Add("Description");
+            workoutList_dt.Columns.Add("Cost (exhaustion)", typeof(int));
 
             foreach (Workout workout in workoutList)
             {
                 string workoutStyle = "";
-                switch(workout.cost)
+                switch (workout.cost)
                 {
                     case 0:
                         workoutStyle = "Recovery";
@@ -85,7 +94,7 @@ namespace FantXC21
                         workoutStyle = "Endurance";
                         break;
                 }
-                workoutSelectionDataTable.Rows.Add(
+                workoutList_dt.Rows.Add(
                     workout.name,
                     workoutStyle,
                     workout.text,
@@ -93,11 +102,19 @@ namespace FantXC21
                 );
             }
 
-            dg_workoutSelection.DataSource = workoutSelectionDataTable;
-            dg_workoutSelection.Columns["Description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            return workoutList_dt;
+        }
 
-            selectedWorkout = workoutList[0];
-            dg_workoutSelection.Rows[0].Selected = true;
+        private void setupWorkoutInfoPanel()
+        {
+            Runner player = season.runners.Where(p => p.isPlayer).FirstOrDefault();
+            List<Workout> playerWorkouts = new List<Workout>();
+            foreach(workoutType type in player.workouts)
+            {
+                playerWorkouts.Add(new Workout(type));
+            }
+            dg_workoutInfo.DataSource = getWorkoutList_DT(playerWorkouts);
+            dg_workoutSelection.Columns["Description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         private void setupDeckInfoPanel()
@@ -157,7 +174,7 @@ namespace FantXC21
                 DataGridViewRow selectedCellRow = selectedCell.OwningRow;
                 selectedCellRow.Selected = true;
                 selectedWorkout = workoutList.Where(w => w.name == selectedCellRow.Cells[0].Value.ToString()).FirstOrDefault();
-                btn_selectWorkout.Text = "Select " + selectedWorkout.name + " (" + workoutNum.ToString() + " of 2)";
+                btn_selectWorkout.Text = "Select Workout: \"" + selectedWorkout.name + "\" (" + workoutNum.ToString() + " of 2)";
             }
         }
 
@@ -185,6 +202,17 @@ namespace FantXC21
         {
             setupDeckInfoPanel();
             showPanel(pnl_deckInfo.Name);
+        }
+
+        private void btn_viewWorkouts_Click(object sender, EventArgs e)
+        {
+            setupWorkoutInfoPanel();
+            showPanel(pnl_workoutInfo.Name);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            showPanel(pnl_workout.Name);
         }
     }
 }
