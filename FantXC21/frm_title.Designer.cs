@@ -36,16 +36,21 @@
             this.lbl_gameTitle = new System.Windows.Forms.Label();
             this.lbl_presents = new System.Windows.Forms.Label();
             this.pnl_workout = new System.Windows.Forms.Panel();
+            this.btn_viewDeck = new System.Windows.Forms.Button();
             this.btn_selectWorkout = new System.Windows.Forms.Button();
             this.dg_workoutSelection = new System.Windows.Forms.DataGridView();
             this.cbl_topThreeFinishes = new System.Windows.Forms.CheckedListBox();
             this.bar_championshipPoints = new System.Windows.Forms.ProgressBar();
             this.btn_qualificationInfo = new System.Windows.Forms.Button();
-            this.lbl_championshipInfo = new System.Windows.Forms.Label();
             this.lbl_weekInfo = new System.Windows.Forms.Label();
+            this.pnl_deckInfo = new System.Windows.Forms.Panel();
+            this.lbl_deckInfo = new System.Windows.Forms.Label();
+            this.dg_deckInfo = new System.Windows.Forms.DataGridView();
             this.pnl_titleScreen.SuspendLayout();
             this.pnl_workout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_workoutSelection)).BeginInit();
+            this.pnl_deckInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_deckInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_titleScreen
@@ -94,17 +99,27 @@
             // 
             // pnl_workout
             // 
+            this.pnl_workout.Controls.Add(this.btn_viewDeck);
             this.pnl_workout.Controls.Add(this.btn_selectWorkout);
             this.pnl_workout.Controls.Add(this.dg_workoutSelection);
             this.pnl_workout.Controls.Add(this.cbl_topThreeFinishes);
             this.pnl_workout.Controls.Add(this.bar_championshipPoints);
             this.pnl_workout.Controls.Add(this.btn_qualificationInfo);
-            this.pnl_workout.Controls.Add(this.lbl_championshipInfo);
             this.pnl_workout.Controls.Add(this.lbl_weekInfo);
             this.pnl_workout.Location = new System.Drawing.Point(12, 12);
             this.pnl_workout.Name = "pnl_workout";
             this.pnl_workout.Size = new System.Drawing.Size(775, 426);
             this.pnl_workout.TabIndex = 4;
+            // 
+            // btn_viewDeck
+            // 
+            this.btn_viewDeck.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_viewDeck.Location = new System.Drawing.Point(0, 227);
+            this.btn_viewDeck.Name = "btn_viewDeck";
+            this.btn_viewDeck.Size = new System.Drawing.Size(176, 46);
+            this.btn_viewDeck.TabIndex = 7;
+            this.btn_viewDeck.Text = "View Deck";
+            this.btn_viewDeck.UseVisualStyleBackColor = true;
             // 
             // btn_selectWorkout
             // 
@@ -140,7 +155,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dg_workoutSelection.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dg_workoutSelection.Location = new System.Drawing.Point(186, 56);
+            this.dg_workoutSelection.Location = new System.Drawing.Point(187, 33);
             this.dg_workoutSelection.Name = "dg_workoutSelection";
             this.dg_workoutSelection.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -153,7 +168,7 @@
             this.dg_workoutSelection.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dg_workoutSelection.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dg_workoutSelection.RowTemplate.Height = 25;
-            this.dg_workoutSelection.Size = new System.Drawing.Size(590, 318);
+            this.dg_workoutSelection.Size = new System.Drawing.Size(590, 341);
             this.dg_workoutSelection.TabIndex = 5;
             this.dg_workoutSelection.SelectionChanged += new System.EventHandler(this.dg_workoutSelection_Changed);
             // 
@@ -166,14 +181,14 @@
             "Top-3 Finish #2",
             "Top-3 Finish #3",
             "Top-3 Finish #4"});
-            this.cbl_topThreeFinishes.Location = new System.Drawing.Point(1, 138);
+            this.cbl_topThreeFinishes.Location = new System.Drawing.Point(1, 117);
             this.cbl_topThreeFinishes.Name = "cbl_topThreeFinishes";
             this.cbl_topThreeFinishes.Size = new System.Drawing.Size(176, 104);
             this.cbl_topThreeFinishes.TabIndex = 4;
             // 
             // bar_championshipPoints
             // 
-            this.bar_championshipPoints.Location = new System.Drawing.Point(1, 109);
+            this.bar_championshipPoints.Location = new System.Drawing.Point(0, 85);
             this.bar_championshipPoints.Maximum = 160;
             this.bar_championshipPoints.Name = "bar_championshipPoints";
             this.bar_championshipPoints.Size = new System.Drawing.Size(176, 23);
@@ -183,22 +198,13 @@
             // btn_qualificationInfo
             // 
             this.btn_qualificationInfo.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btn_qualificationInfo.Location = new System.Drawing.Point(0, 56);
+            this.btn_qualificationInfo.Location = new System.Drawing.Point(0, 33);
             this.btn_qualificationInfo.Name = "btn_qualificationInfo";
             this.btn_qualificationInfo.Size = new System.Drawing.Size(177, 46);
             this.btn_qualificationInfo.TabIndex = 2;
             this.btn_qualificationInfo.Text = "Qualification Info";
             this.btn_qualificationInfo.UseVisualStyleBackColor = true;
             this.btn_qualificationInfo.Click += new System.EventHandler(this.btn_qualificationInfo_Click);
-            // 
-            // lbl_championshipInfo
-            // 
-            this.lbl_championshipInfo.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_championshipInfo.Location = new System.Drawing.Point(1, 30);
-            this.lbl_championshipInfo.Name = "lbl_championshipInfo";
-            this.lbl_championshipInfo.Size = new System.Drawing.Size(774, 23);
-            this.lbl_championshipInfo.TabIndex = 1;
-            this.lbl_championshipInfo.Text = "champ_info_string";
             // 
             // lbl_weekInfo
             // 
@@ -210,18 +216,58 @@
             this.lbl_weekInfo.TabIndex = 0;
             this.lbl_weekInfo.Text = "season_info_string";
             // 
+            // pnl_deckInfo
+            // 
+            this.pnl_deckInfo.Controls.Add(this.lbl_deckInfo);
+            this.pnl_deckInfo.Controls.Add(this.dg_deckInfo);
+            this.pnl_deckInfo.Location = new System.Drawing.Point(12, 12);
+            this.pnl_deckInfo.Name = "pnl_deckInfo";
+            this.pnl_deckInfo.Size = new System.Drawing.Size(775, 426);
+            this.pnl_deckInfo.TabIndex = 4;
+            // 
+            // lbl_deckInfo
+            // 
+            this.lbl_deckInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbl_deckInfo.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_deckInfo.Location = new System.Drawing.Point(0, 0);
+            this.lbl_deckInfo.Name = "lbl_deckInfo";
+            this.lbl_deckInfo.Size = new System.Drawing.Size(775, 23);
+            this.lbl_deckInfo.TabIndex = 1;
+            this.lbl_deckInfo.Text = "Your Deck:";
+            // 
+            // dg_deckInfo
+            // 
+            this.dg_deckInfo.AllowUserToAddRows = false;
+            this.dg_deckInfo.AllowUserToDeleteRows = false;
+            this.dg_deckInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dg_deckInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.dg_deckInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dg_deckInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_deckInfo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dg_deckInfo.Location = new System.Drawing.Point(0, 33);
+            this.dg_deckInfo.Name = "dg_deckInfo";
+            this.dg_deckInfo.ReadOnly = true;
+            this.dg_deckInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dg_deckInfo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dg_deckInfo.RowTemplate.Height = 25;
+            this.dg_deckInfo.Size = new System.Drawing.Size(775, 341);
+            this.dg_deckInfo.TabIndex = 5;
+            // 
             // frm_title
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pnl_workout);
+            this.Controls.Add(this.pnl_deckInfo);
             this.Controls.Add(this.pnl_titleScreen);
+            this.Controls.Add(this.pnl_workout);
             this.Name = "frm_title";
             this.Text = " FantXC21";
             this.pnl_titleScreen.ResumeLayout(false);
             this.pnl_workout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dg_workoutSelection)).EndInit();
+            this.pnl_deckInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dg_deckInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -234,12 +280,15 @@
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.Panel pnl_workout;
         private System.Windows.Forms.Label lbl_weekInfo;
-        private System.Windows.Forms.Label lbl_championshipInfo;
         private System.Windows.Forms.Button btn_qualificationInfo;
         private System.Windows.Forms.ProgressBar bar_championshipPoints;
         private System.Windows.Forms.CheckedListBox cbl_topThreeFinishes;
         private System.Windows.Forms.DataGridView dg_workoutSelection;
         private System.Windows.Forms.Button btn_selectWorkout;
+        private System.Windows.Forms.Button btn_viewDeck;
+        private System.Windows.Forms.Panel pnl_deckInfo;
+        private System.Windows.Forms.Label lbl_deckInfo;
+        private System.Windows.Forms.DataGridView dg_deckInfo;
     }
 }
 

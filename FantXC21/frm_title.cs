@@ -47,8 +47,7 @@ namespace FantXC21
             this.workoutNum = 1;
             this.workoutList = workoutList;
 
-            lbl_weekInfo.Text = "Week #" + season.weekNum.ToString();
-            lbl_championshipInfo.Text = (13 - season.weekNum).ToString() + " races until the championship";
+            lbl_weekInfo.Text = "Week #" + season.weekNum.ToString() + ", " + (13 - season.weekNum).ToString() + " races until the championship";
 
             Runner player = season.runners.Where(r => r.isPlayer).FirstOrDefault();
             bar_championshipPoints.Value = player.getTotalPoints();
@@ -113,17 +112,29 @@ namespace FantXC21
 
         private void dg_workoutSelection_Changed(object sender, EventArgs e)
         {
-            if (dg_workoutSelection.SelectedRows.Count > 0)
+            if (dg_workoutSelection.SelectedCells.Count > 0)
             {
-                DataGridViewRow selectedRow = dg_workoutSelection.SelectedRows[0];
-                selectedWorkout = workoutList.Where(w => w.name == selectedRow.Cells[0].Value.ToString()).FirstOrDefault();
+                DataGridViewCell selectedCell = dg_workoutSelection.SelectedCells[0];
+                DataGridViewRow selectedCellRow = selectedCell.OwningRow;
+                selectedCellRow.Selected = true;
+                selectedWorkout = workoutList.Where(w => w.name == selectedCellRow.Cells[0].Value.ToString()).FirstOrDefault();
                 btn_selectWorkout.Text = "Select " + selectedWorkout.name + " (" + workoutNum.ToString() + " of 2)";
             }
         }
 
         private void btn_selectWorkout_Click(object sender, EventArgs e)
         {
-
+            season.runners.Where(r => r.isPlayer).FirstOrDefault().doWorkout(selectedWorkout);
+            if (workoutNum == 1)
+            {
+                workoutNum = 2;
+                showWorkoutPanel(season.weeks.Last().WorkoutSelection_Two);
+            }
+            else
+            {
+                season.SelectAndPerformWorkoutsForAllCPURunners();
+                //Go to race phase
+            }
         }
     }
 }
