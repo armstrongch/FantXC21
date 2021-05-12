@@ -44,6 +44,7 @@
             this.btn_qualificationInfo = new System.Windows.Forms.Button();
             this.lbl_weekInfo = new System.Windows.Forms.Label();
             this.pnl_deckInfo = new System.Windows.Forms.Panel();
+            this.btn_backFromDeckView = new System.Windows.Forms.Button();
             this.lbl_deckInfo = new System.Windows.Forms.Label();
             this.dg_deckInfo = new System.Windows.Forms.DataGridView();
             this.pnl_titleScreen.SuspendLayout();
@@ -120,6 +121,7 @@
             this.btn_viewDeck.TabIndex = 7;
             this.btn_viewDeck.Text = "View Deck";
             this.btn_viewDeck.UseVisualStyleBackColor = true;
+            this.btn_viewDeck.Click += new System.EventHandler(this.btn_viewDeck_Click);
             // 
             // btn_selectWorkout
             // 
@@ -218,12 +220,26 @@
             // 
             // pnl_deckInfo
             // 
+            this.pnl_deckInfo.Controls.Add(this.btn_backFromDeckView);
             this.pnl_deckInfo.Controls.Add(this.lbl_deckInfo);
             this.pnl_deckInfo.Controls.Add(this.dg_deckInfo);
             this.pnl_deckInfo.Location = new System.Drawing.Point(12, 12);
             this.pnl_deckInfo.Name = "pnl_deckInfo";
             this.pnl_deckInfo.Size = new System.Drawing.Size(775, 426);
             this.pnl_deckInfo.TabIndex = 4;
+            // 
+            // btn_backFromDeckView
+            // 
+            this.btn_backFromDeckView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_backFromDeckView.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btn_backFromDeckView.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_backFromDeckView.Location = new System.Drawing.Point(0, 381);
+            this.btn_backFromDeckView.Name = "btn_backFromDeckView";
+            this.btn_backFromDeckView.Size = new System.Drawing.Size(777, 45);
+            this.btn_backFromDeckView.TabIndex = 6;
+            this.btn_backFromDeckView.Text = "Back";
+            this.btn_backFromDeckView.UseVisualStyleBackColor = true;
+            this.btn_backFromDeckView.Click += new System.EventHandler(this.btn_backFromDeckView_Click);
             // 
             // lbl_deckInfo
             // 
@@ -241,14 +257,10 @@
             this.dg_deckInfo.AllowUserToDeleteRows = false;
             this.dg_deckInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dg_deckInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.dg_deckInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_deckInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_deckInfo.DefaultCellStyle = dataGridViewCellStyle2;
             this.dg_deckInfo.Location = new System.Drawing.Point(0, 33);
             this.dg_deckInfo.Name = "dg_deckInfo";
             this.dg_deckInfo.ReadOnly = true;
-            this.dg_deckInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dg_deckInfo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dg_deckInfo.RowTemplate.Height = 25;
             this.dg_deckInfo.Size = new System.Drawing.Size(775, 341);
             this.dg_deckInfo.TabIndex = 5;
@@ -258,9 +270,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pnl_workout);
             this.Controls.Add(this.pnl_deckInfo);
             this.Controls.Add(this.pnl_titleScreen);
-            this.Controls.Add(this.pnl_workout);
             this.Name = "frm_title";
             this.Text = " FantXC21";
             this.pnl_titleScreen.ResumeLayout(false);
@@ -289,6 +301,7 @@
         private System.Windows.Forms.Panel pnl_deckInfo;
         private System.Windows.Forms.Label lbl_deckInfo;
         private System.Windows.Forms.DataGridView dg_deckInfo;
+        private System.Windows.Forms.Button btn_backFromDeckView;
     }
 }
 

@@ -20,11 +20,10 @@ namespace FantXC21
         public CPU_Logic cpu_logic { get; private set; }
         public List<RaceResults> raceResults { get; private set; }
         public List<workoutType> workouts { get; private set; }
-
-        private List<Card> deck;
-        private List<Card> hand;
-        private List<Card> discard;
         
+        public List<cardType> deck { get; private set; }
+        public List<cardType> hand { get; private set; }
+        public List<cardType> discard { get; private set; }
 
         public Runner(string name, bool isPlayer)
         {
@@ -36,27 +35,34 @@ namespace FantXC21
 
             cpu_logic = new CPU_Logic();
 
-            deck = new List<Card>();
-            deck.Add(new Card(cardType.RUN));
-            deck.Add(new Card(cardType.RUN));
-            deck.Add(new Card(cardType.RUN));
-            deck.Add(new Card(cardType.SURGE));
-            deck.Add(new Card(cardType.SURGE));
-            deck.Add(new Card(cardType.RECOVER));
-            deck.Add(new Card(cardType.RECOVER));
-            deck.Add(new Card(cardType.KICK));
-            deck.Add(new Card(cardType.COAST));
-            deck.Add(new Card(cardType.COAST));
-            deck.Add(new Card(cardType.RUN));
-            deck.Add(new Card(cardType.RUN));
+            deck = new List<cardType>();
+            deck.Add(cardType.RUN);
+            deck.Add(cardType.RUN);
+            deck.Add(cardType.RUN);
+            deck.Add(cardType.SURGE);
+            deck.Add(cardType.SURGE);
+            deck.Add(cardType.RECOVER);
+            deck.Add(cardType.RECOVER);
+            deck.Add(cardType.KICK);
+            deck.Add(cardType.COAST);
+            deck.Add(cardType.COAST);
+            deck.Add(cardType.REEL_IN);
+            deck.Add(cardType.REEL_IN);
 
-            hand = new List<Card>();
-            discard = new List<Card>();
+            hand = new List<cardType>();
+            discard = new List<cardType>();
             bonusEnergy = 0;
             startingEnergy = 100;
             cardEnergyModifiers = new Dictionary<cardType, int>();
             cardDistanceModifiers = new Dictionary<cardType, int>();
             raceResults = new List<RaceResults>();
+        }
+
+        public Card getModifiedCard(cardType type)
+        {
+            int distanceMod = cardDistanceModifiers.ContainsKey(type) ? cardDistanceModifiers[type] : 0;
+            int costMod = cardEnergyModifiers.ContainsKey(type) ? cardEnergyModifiers[type] : 0;
+            return new Card(type, distanceMod, costMod);
         }
 
         private void updateEnergyModifier(cardType type, int modifier)
@@ -73,13 +79,13 @@ namespace FantXC21
 
         private void updateDistanceModifier(cardType type, int modifier)
         {
-            if (cardEnergyModifiers.ContainsKey(type))
+            if (cardDistanceModifiers.ContainsKey(type))
             {
-                cardEnergyModifiers[type] += modifier;
+                cardDistanceModifiers[type] += modifier;
             }
             else
             {
-                cardEnergyModifiers.Add(type, modifier);
+                cardDistanceModifiers.Add(type, modifier);
             }
         }
 
@@ -127,10 +133,10 @@ namespace FantXC21
                     startingEnergy += 25;
                     break;
                 case workoutType.DOUBLE_WORKOUT:
-                    deck.Add(new Card(cardType.RUN));
+                    deck.Add(cardType.RUN);
                     break;
                 case workoutType.FARTLEKS:
-                    deck.Add(new Card(cardType.SURGE));
+                    deck.Add(cardType.SURGE);
                     break;
                 case workoutType.TEMPO:
                     updateEnergyModifier(cardType.RUN, -5);
@@ -151,7 +157,7 @@ namespace FantXC21
                     foreach (cardType cardType in cardTypes)
                     {
                         updateDistanceModifier(cardType, 200);
-                        updateEnergyModifier(cardType, -5);
+                        updateEnergyModifier(cardType, 5);
                     }
                     break;
                 case workoutType.COMPOUND_SETS:

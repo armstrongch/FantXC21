@@ -22,12 +22,13 @@ namespace FantXC21
             season = new Season();
             season.AddWeekToSeason();
             InitializeComponent();
-            showPanel("pnl_titleScreen");
+            showPanel(pnl_titleScreen.Name);
         }
 
         private void btn_start_Click(object sender, EventArgs e)
         {
-            showWorkoutPanel(season.weeks.Last().WorkoutSelection_One);
+            setupWorkoutPanel(season.weeks.Last().WorkoutSelection_One);
+            showPanel(pnl_workout.Name);
         }
 
         private void showPanel(string panelName)
@@ -42,7 +43,7 @@ namespace FantXC21
             }
         }
 
-        private void showWorkoutPanel(List<Workout> workoutList)
+        private void setupWorkoutPanel(List<Workout> workoutList)
         {
             this.workoutNum = 1;
             this.workoutList = workoutList;
@@ -64,7 +65,7 @@ namespace FantXC21
             workoutSelectionDataTable.Columns.Add("Workout Name");
             workoutSelectionDataTable.Columns.Add("Type"); //Not actually workout type, this is based on the cost.
             workoutSelectionDataTable.Columns.Add("Description");
-            workoutSelectionDataTable.Columns.Add("Cost");
+            workoutSelectionDataTable.Columns.Add("Cost (exhaustion)", typeof(int));
 
             foreach (Workout workout in workoutList)
             {
@@ -88,7 +89,7 @@ namespace FantXC21
                     workout.name,
                     workoutStyle,
                     workout.text,
-                    workout.cost.ToString() + " exhaustion"
+                    workout.cost
                 );
             }
 
@@ -97,8 +98,46 @@ namespace FantXC21
 
             selectedWorkout = workoutList[0];
             dg_workoutSelection.Rows[0].Selected = true;
+        }
 
-            showPanel("pnl_workout");
+        private void setupDeckInfoPanel()
+        {
+            DataTable deckData = new DataTable();
+            deckData.Columns.Add("Card Name");
+            deckData.Columns.Add("Distance", typeof(int));
+            deckData.Columns.Add("Description");
+            deckData.Columns.Add("Energy", typeof(int));
+            deckData.Columns.Add("Number of Copies", typeof(int));
+
+            Runner player = season.runners.Where(p => p.isPlayer).FirstOrDefault();
+            Dictionary<cardType, int> playerCardCount = new Dictionary<cardType, int>();
+            List<cardType> allPlayerCards = player.deck.Concat(player.discard).Concat(player.hand).ToList();
+            
+            foreach (cardType type in player.deck)
+            {
+                if (playerCardCount.ContainsKey(type))
+                {
+                    playerCardCount[type] += 1;
+                }
+                else
+                {
+                    playerCardCount.Add(type, 1);
+                }
+            }
+
+            for (int i = 0; i < playerCardCount.Count; i += 1)
+            {
+                Card playerCard = player.getModifiedCard(playerCardCount.ElementAt(i).Key);
+                deckData.Rows.Add(
+                    playerCard.name,
+                    playerCard.distance,
+                    playerCard.specialText,
+                    playerCard.energy,
+                    playerCardCount.ElementAt(i).Value);
+            }
+
+            dg_deckInfo.DataSource = deckData;
+            dg_deckInfo.Columns["Description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         private void btn_qualificationInfo_Click(object sender, EventArgs e)
@@ -128,13 +167,24 @@ namespace FantXC21
             if (workoutNum == 1)
             {
                 workoutNum = 2;
-                showWorkoutPanel(season.weeks.Last().WorkoutSelection_Two);
+                setupWorkoutPanel(season.weeks.Last().WorkoutSelection_Two);
             }
             else
             {
                 season.SelectAndPerformWorkoutsForAllCPURunners();
                 //Go to race phase
             }
+        }
+
+        private void btn_backFromDeckView_Click(object sender, EventArgs e)
+        {
+            showPanel(pnl_workout.Name);
+        }
+
+        private void btn_viewDeck_Click(object sender, EventArgs e)
+        {
+            setupDeckInfoPanel();
+            showPanel(pnl_deckInfo.Name);
         }
     }
 }
