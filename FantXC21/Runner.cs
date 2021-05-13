@@ -24,6 +24,14 @@ namespace FantXC21
         public List<cardType> deck { get; private set; }
         public List<cardType> hand { get; private set; }
         public List<cardType> discard { get; private set; }
+        public Boolean qualified { 
+            get
+            {
+                return (getTotalPoints() >= 140) || (getNumTopThreeFinishes() >= 4);
+
+            }
+            set { }
+        }
 
         public Runner(string name, bool isPlayer)
         {

@@ -48,14 +48,14 @@ namespace FantXC21
             this.workoutNum = 1;
             this.workoutList = workoutList;
 
-            lbl_weekInfo.Text = "Week #" + season.weekNum.ToString() + ", " + (13 - season.weekNum).ToString() + " races until the championship";
+            lbl_weekInfo.Text = "Week #" + season.weekNum.ToString() + " - " + (13 - season.weekNum).ToString() + " races until the championship";
 
             Runner player = season.runners.Where(r => r.isPlayer).FirstOrDefault();
             bar_championshipPoints.Value = player.getTotalPoints();
-            
+
             int numTopThrees = player.getNumTopThreeFinishes();
             if (numTopThrees > 4) { numTopThrees = 4; }
-            
+
             for (int i = 0; i < numTopThrees; i += 1)
             {
                 cbl_topThreeFinishes.SetItemChecked(i, true);
@@ -66,6 +66,15 @@ namespace FantXC21
 
             selectedWorkout = workoutList[0];
             dg_workoutSelection.Rows[0].Selected = true;
+
+            double exhaustionDecimal = 1 + player.exhaustion * 0.1;
+            string exhaustionString = exhaustionDecimal.ToString();
+
+            lbl_exhaustionInfo.Text = "Exhaustion: " + player.exhaustion.ToString() + "\n"
+                + "The energy cost of workouts during races will be multiplied by " + exhaustionString + ".";
+
+
+
         }
 
         private DataTable getWorkoutList_DT(List<Workout> workoutList)
@@ -115,6 +124,38 @@ namespace FantXC21
             }
             dg_workoutInfo.DataSource = getWorkoutList_DT(playerWorkouts);
             dg_workoutSelection.Columns["Description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        }
+
+        private void setupSeasonStandingInfoPanel()
+        {
+            Runner player = season.runners.Where(p => p.isPlayer).FirstOrDefault();
+
+            DataTable runners_DT = new DataTable();
+            runners_DT.Columns.Add("Name");
+            runners_DT.Columns.Add("Points", typeof(int));
+            runners_DT.Columns.Add("Top-3 Finishes", typeof(int));
+            runners_DT.Columns.Add("Most-Recent Finish", typeof(int));
+            runners_DT.Columns.Add("Qualified?");
+
+            foreach(Runner runner in season.runners)
+            {
+                string nameString = runner.name;
+                int recentFinishPosition = 0;
+                if (runner.raceResults.Count > 0)
+                {
+                    recentFinishPosition = runner.raceResults.Last().finishPosition;
+                }
+
+                if (runner.isPlayer) { nameString += " (You)"; }
+                runners_DT.Rows.Add(
+                    nameString,
+                    runner.getTotalPoints(),
+                    runner.getNumTopThreeFinishes(),
+                    recentFinishPosition,
+                    runner.qualified ? "Yes" : "No");
+            }
+
+            dg_seasonStandings.DataSource = runners_DT;
         }
 
         private void setupDeckInfoPanel()
@@ -210,7 +251,18 @@ namespace FantXC21
             showPanel(pnl_workoutInfo.Name);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_workoutInfoToWorkoutsView_Click(object sender, EventArgs e)
+        {
+            showPanel(pnl_workout.Name);
+        }
+
+        private void lbl_runnerInfo_Click(object sender, EventArgs e)
+        {
+            setupSeasonStandingInfoPanel();
+            showPanel(pnl_seasonStandingInfo.Name);
+        }
+
+        private void btn_seasonToWorkoutView_Click(object sender, EventArgs e)
         {
             showPanel(pnl_workout.Name);
         }
