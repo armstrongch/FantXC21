@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace FantXC21
 {
-    public partial class frm_title : Form
+    public partial class frm_game : Form
     {
         private Season season;
         private Workout selectedWorkout;
         private List<Workout> workoutList;
         private int workoutNum;
 
-        public frm_title()
+        public frm_game()
         {
             season = new Season();
             season.AddWeekToSeason();
@@ -28,6 +28,7 @@ namespace FantXC21
         private void btn_start_Click(object sender, EventArgs e)
         {
             setupWorkoutPanel(season.weeks.Last().WorkoutSelection_One);
+            workoutNum = 1;
             showPanel(pnl_workout.Name);
         }
 
@@ -45,7 +46,6 @@ namespace FantXC21
 
         private void setupWorkoutPanel(List<Workout> workoutList)
         {
-            this.workoutNum = 1;
             this.workoutList = workoutList;
 
             lbl_weekInfo.Text = "Week #" + season.weekNum.ToString() + " - " + (13 - season.weekNum).ToString() + " races until the championship";
@@ -225,7 +225,7 @@ namespace FantXC21
             else
             {
                 season.SelectAndPerformWorkoutsForAllCPURunners();
-                //Go to race phase
+                showPanel(pnl_race.Name);
             }
         }
 

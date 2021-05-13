@@ -25,7 +25,7 @@ namespace FantXC21
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_title());
+            Application.Run(new frm_game());
         }
     }
 }
