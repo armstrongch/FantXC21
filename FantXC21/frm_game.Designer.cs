@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_titleScreen = new System.Windows.Forms.Panel();
             this.btn_start = new System.Windows.Forms.Button();
             this.lbl_gameTitle = new System.Windows.Forms.Label();
@@ -60,10 +60,10 @@
             this.lbl_workoutInfo = new System.Windows.Forms.Label();
             this.btn_workoutInfoToWorkoutsView = new System.Windows.Forms.Button();
             this.pnl_race = new System.Windows.Forms.Panel();
-            this.dg_playerHand = new System.Windows.Forms.DataGridView();
-            this.pb_raceImage = new System.Windows.Forms.PictureBox();
-            this.lbl_raceInfo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.dg_playerHand = new System.Windows.Forms.DataGridView();
+            this.lbl_raceInfo = new System.Windows.Forms.Label();
+            this.ri_raceImage = new FantXC21.RaceImage();
             this.pnl_titleScreen.SuspendLayout();
             this.pnl_workout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_workoutSelection)).BeginInit();
@@ -75,7 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dg_workoutInfo)).BeginInit();
             this.pnl_race.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_playerHand)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_raceImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ri_raceImage)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_titleScreen
@@ -219,34 +219,34 @@
             this.dg_workoutSelection.AllowUserToDeleteRows = false;
             this.dg_workoutSelection.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dg_workoutSelection.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_workoutSelection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_workoutSelection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dg_workoutSelection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_workoutSelection.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_workoutSelection.DefaultCellStyle = dataGridViewCellStyle10;
             this.dg_workoutSelection.Location = new System.Drawing.Point(187, 33);
             this.dg_workoutSelection.Name = "dg_workoutSelection";
             this.dg_workoutSelection.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_workoutSelection.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_workoutSelection.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dg_workoutSelection.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dg_workoutSelection.RowTemplate.Height = 25;
             this.dg_workoutSelection.Size = new System.Drawing.Size(590, 357);
@@ -385,14 +385,14 @@
             this.dg_workoutInfo.AllowUserToDeleteRows = false;
             this.dg_workoutInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dg_workoutInfo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_workoutInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_workoutInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dg_workoutInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_workoutInfo.Location = new System.Drawing.Point(0, 27);
             this.dg_workoutInfo.Name = "dg_workoutInfo";
@@ -425,14 +425,23 @@
             // 
             // pnl_race
             // 
+            this.pnl_race.Controls.Add(this.ri_raceImage);
             this.pnl_race.Controls.Add(this.label1);
             this.pnl_race.Controls.Add(this.dg_playerHand);
-            this.pnl_race.Controls.Add(this.pb_raceImage);
             this.pnl_race.Controls.Add(this.lbl_raceInfo);
             this.pnl_race.Location = new System.Drawing.Point(13, 12);
             this.pnl_race.Name = "pnl_race";
             this.pnl_race.Size = new System.Drawing.Size(776, 429);
             this.pnl_race.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(0, 257);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(390, 172);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "lbl_raceInfo";
             // 
             // dg_playerHand
             // 
@@ -448,15 +457,6 @@
             this.dg_playerHand.Size = new System.Drawing.Size(390, 224);
             this.dg_playerHand.TabIndex = 2;
             // 
-            // pb_raceImage
-            // 
-            this.pb_raceImage.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pb_raceImage.Location = new System.Drawing.Point(396, 26);
-            this.pb_raceImage.Name = "pb_raceImage";
-            this.pb_raceImage.Size = new System.Drawing.Size(379, 403);
-            this.pb_raceImage.TabIndex = 1;
-            this.pb_raceImage.TabStop = false;
-            // 
             // lbl_raceInfo
             // 
             this.lbl_raceInfo.Dock = System.Windows.Forms.DockStyle.Top;
@@ -467,14 +467,14 @@
             this.lbl_raceInfo.TabIndex = 0;
             this.lbl_raceInfo.Text = "race_course_week_string";
             // 
-            // label1
+            // ri_raceImage
             // 
-            this.label1.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(0, 257);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(390, 172);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "lbl_raceInfo";
+            this.ri_raceImage.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ri_raceImage.Location = new System.Drawing.Point(397, 27);
+            this.ri_raceImage.Name = "ri_raceImage";
+            this.ri_raceImage.Size = new System.Drawing.Size(376, 398);
+            this.ri_raceImage.TabIndex = 4;
+            this.ri_raceImage.TabStop = false;
             // 
             // frm_game
             // 
@@ -500,7 +500,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dg_workoutInfo)).EndInit();
             this.pnl_race.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dg_playerHand)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_raceImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ri_raceImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -537,9 +537,9 @@
         private System.Windows.Forms.Panel pnl_race;
         private System.Windows.Forms.ProgressBar btn_seasonStandings;
         private System.Windows.Forms.Label lbl_raceInfo;
-        private System.Windows.Forms.PictureBox pb_raceImage;
         private System.Windows.Forms.DataGridView dg_playerHand;
         private System.Windows.Forms.Label label1;
+        private RaceImage ri_raceImage;
     }
 }
 

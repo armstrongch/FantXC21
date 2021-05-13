@@ -73,7 +73,7 @@ namespace FantXC21
                 GetWorkoutSelection(),
                 GetWorkoutSelection(),
                 courses);
-            week.races[weekNum % 6].AddRunner(runners.Where(p => p.isPlayer).FirstOrDefault());
+            week.races[weekNum % 6].AddRunner(runners.Find(p => p.isPlayer));
             runners.Shuffle(random);
             int nextRunnerIndex = 0;
             foreach (Race race in week.races)
@@ -104,6 +104,41 @@ namespace FantXC21
                 workoutSelection.Add(workoutSubset.ElementAt(random.Next(workoutSubset.Count())));
             }
             return workoutSelection;
+        }
+
+        private void setupRace(Race race)
+        {
+            foreach(Runner runner in runners.Where(r => race.runnerNames.Contains(r.name)))
+            {
+                runner.PrepareForRace();
+            }
+        }
+
+        private bool isCardValid(cardType type, string runnerName)
+        {
+            Runner runner = runners.Find(r => r.name == runnerName);
+            Card card = runner.getModifiedCard(type);
+            if (card.energy > runner.currentEnergy)
+            {
+                return false;
+            }
+            switch(type)
+            {
+                case cardType.COAST:
+                    int nearbyRunnerCount = runners
+                        .Where(r => r.name != runnerName)
+                        .Where(r => Math.Abs(r.turnStartPosition - runner.turnStartPosition) <= 50)
+                        .Count();
+                    return nearbyRunnerCount > 0;
+                case cardType.REEL_IN:
+                    List<Runner> runnersLessThan300MetersAhead = runners
+                        .Where(r => r.name != runnerName)
+                        .Where(r => r.turnStartPosition > runner.turnStartPosition)
+                        .Where(r => r.turnStartPosition <= runner.turnStartPosition + 300)
+                        .ToList();
+                    return runnersLessThan300MetersAhead.Count > 0;
+                default: return true;
+            }
         }
     }
 }

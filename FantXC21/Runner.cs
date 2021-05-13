@@ -34,6 +34,13 @@ namespace FantXC21
         }
         public Dictionary<string, TimeSpan> coursePersonalBests { get; private set; }
         public TimeSpan personalBest { get; private set; }
+
+        public int turnStartPosition { get; private set; }
+        public int turnEndPosition { get; private set; }
+        public int currentEnergy { get; private set; }
+
+        private Random random;
+
         public Runner(string name, bool isPlayer)
         {
             this.name = name;
@@ -71,6 +78,35 @@ namespace FantXC21
             for (int i = 0; i < Course.names.Length; i += 1)
             {
                 coursePersonalBests.Add(Course.names[i], personalBest);
+            }
+
+            random = new Random();
+        }
+
+        //Only call this when actually prepping for a race, or you'll wipe out the bonus energy. This shouldn't be a general-purpose reset
+        public void PrepareForRace()
+        {
+            turnStartPosition = 0;
+            turnEndPosition = 0;
+            currentEnergy = startingEnergy + bonusEnergy;
+            bonusEnergy = 0;
+            deck.AddRange(discard);
+            deck.AddRange(hand);
+            discard = new List<cardType>();
+            hand = new List<cardType>();
+            deck.Shuffle(random);
+            for (int i = 0; i < 3; i += 1)
+            {
+                drawCard();
+            }
+        }
+
+        public void drawCard()
+        {
+            if (deck.Count > 0)
+            {
+                hand.Add(deck[0]);
+                deck.RemoveAt(0);
             }
         }
 
@@ -113,12 +149,36 @@ namespace FantXC21
                 default:
                     if (exhaustion < 5)
                     {
-                        return WorkoutList.Where(w => w.cost == 0).FirstOrDefault();
+                        List<Workout> nonRecoveryWorkouts = WorkoutList.Where(w => w.cost > 0).ToList();
+                        nonRecoveryWorkouts.Shuffle(random);
+                        return WorkoutList.Find(w => w.cost > 0);
+
                     }
                     else
                     {
-                        return WorkoutList.Where(w => w.cost > 0).FirstOrDefault();
+                        return WorkoutList.Find(w => w.cost == 0);
                     }
+            }
+        }
+
+        public void playCard(Card card)
+        {
+            if (card.cardType != cardType.FATIGUE)
+            {
+                hand.Remove(card.cardType);
+                discard.Add(card.cardType);
+            }
+
+            turnEndPosition += card.distance;
+            currentEnergy -= card.energy;
+            switch (card.cardType)
+            {
+                case cardType.RECOVER:
+                    currentEnergy += 10;
+                    break;
+                case cardType.KICK:
+                    currentEnergy = 0;
+                    break;
             }
         }
 

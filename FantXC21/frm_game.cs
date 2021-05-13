@@ -50,7 +50,7 @@ namespace FantXC21
 
             lbl_weekInfo.Text = "Week #" + season.weekNum.ToString() + " - " + (13 - season.weekNum).ToString() + " races until the championship";
 
-            Runner player = season.runners.Where(r => r.isPlayer).FirstOrDefault();
+            Runner player = season.runners.Find(r => r.isPlayer);
             bar_championshipProgress.Value = player.getTotalPoints();
 
             int numTopThrees = player.getNumTopThreeFinishes();
@@ -116,7 +116,7 @@ namespace FantXC21
 
         private void setupWorkoutInfoPanel()
         {
-            Runner player = season.runners.Where(p => p.isPlayer).FirstOrDefault();
+            Runner player = season.runners.Find(p => p.isPlayer);
             List<Workout> playerWorkouts = new List<Workout>();
             foreach(workoutType type in player.workouts)
             {
@@ -128,7 +128,7 @@ namespace FantXC21
 
         private void setupSeasonStandingInfoPanel()
         {
-            Runner player = season.runners.Where(p => p.isPlayer).FirstOrDefault();
+            Runner player = season.runners.Find(p => p.isPlayer);
 
             DataTable runners_DT = new DataTable();
             runners_DT.Columns.Add("Name");
@@ -162,7 +162,7 @@ namespace FantXC21
             deckData.Columns.Add("Energy", typeof(int));
             deckData.Columns.Add("Number of Copies", typeof(int));
 
-            Runner player = season.runners.Where(p => p.isPlayer).FirstOrDefault();
+            Runner player = season.runners.Find(p => p.isPlayer);
             Dictionary<cardType, int> playerCardCount = new Dictionary<cardType, int>();
             List<cardType> allPlayerCards = player.deck.Concat(player.discard).Concat(player.hand).ToList();
             
@@ -216,7 +216,7 @@ namespace FantXC21
 
         private void btn_selectWorkout_Click(object sender, EventArgs e)
         {
-            season.runners.Where(r => r.isPlayer).FirstOrDefault().doWorkout(selectedWorkout);
+            season.runners.Find(r => r.isPlayer).doWorkout(selectedWorkout);
             if (workoutNum == 1)
             {
                 workoutNum = 2;
@@ -225,6 +225,7 @@ namespace FantXC21
             else
             {
                 season.SelectAndPerformWorkoutsForAllCPURunners();
+                
                 showPanel(pnl_race.Name);
             }
         }
