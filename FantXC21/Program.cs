@@ -16,6 +16,8 @@ namespace FantXC21
         {
             /*
              * Using git, github:
+             * $ cd /c/users/chris/source/repos/fantxc21
+             * $ git status
              * $ git add . 
              * $ git commit -m "comment"
              * $ git push origin main
