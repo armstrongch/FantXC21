@@ -32,7 +32,8 @@ namespace FantXC21
             }
             set { }
         }
-
+        public Dictionary<string, TimeSpan> coursePersonalBests { get; private set; }
+        public TimeSpan personalBest { get; private set; }
         public Runner(string name, bool isPlayer)
         {
             this.name = name;
@@ -40,7 +41,7 @@ namespace FantXC21
             exhaustion = 0;
             exhaustionReduction = 0;
             bonusDistanceAboveEighty = 0;
-
+            personalBest = new TimeSpan(0, 100, 0);
             cpu_logic = new CPU_Logic();
 
             deck = new List<cardType>();
@@ -65,6 +66,12 @@ namespace FantXC21
             cardDistanceModifiers = new Dictionary<cardType, int>();
             raceResults = new List<RaceResults>();
             workouts = new List<workoutType>();
+
+            coursePersonalBests = new Dictionary<string, TimeSpan>();
+            for (int i = 0; i < Course.names.Length; i += 1)
+            {
+                coursePersonalBests.Add(Course.names[i], personalBest);
+            }
         }
 
         public Card getModifiedCard(cardType type)

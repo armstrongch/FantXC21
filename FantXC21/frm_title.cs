@@ -134,24 +134,19 @@ namespace FantXC21
             runners_DT.Columns.Add("Name");
             runners_DT.Columns.Add("Points", typeof(int));
             runners_DT.Columns.Add("Top-3 Finishes", typeof(int));
-            runners_DT.Columns.Add("Most-Recent Finish", typeof(int));
+            runners_DT.Columns.Add("Personal Best Time", typeof(TimeSpan));
             runners_DT.Columns.Add("Qualified?");
 
             foreach(Runner runner in season.runners)
             {
                 string nameString = runner.name;
-                int recentFinishPosition = 0;
-                if (runner.raceResults.Count > 0)
-                {
-                    recentFinishPosition = runner.raceResults.Last().finishPosition;
-                }
 
                 if (runner.isPlayer) { nameString += " (You)"; }
                 runners_DT.Rows.Add(
                     nameString,
                     runner.getTotalPoints(),
                     runner.getNumTopThreeFinishes(),
-                    recentFinishPosition,
+                    runner.personalBest,
                     runner.qualified ? "Yes" : "No");
             }
 

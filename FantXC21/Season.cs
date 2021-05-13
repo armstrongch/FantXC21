@@ -11,7 +11,8 @@ namespace FantXC21
         public int weekNum { get; private set; }
         public List<Week> weeks { get; private set; }
         public List<Runner> runners { get; private set; }
-       
+        public List<Course> courses { get; private set; }
+
         private List<Workout> workouts;
         public Random random;
 
@@ -39,6 +40,11 @@ namespace FantXC21
 
             random = new Random();
             weeks = new List<Week>();
+            courses = new List<Course>();
+            for (int i = 0; i < 6; i += 1)
+            {
+                courses.Add(new Course(Course.names[i]));
+            }
         }
 
         public void SelectAndPerformWorkoutsForAllCPURunners()

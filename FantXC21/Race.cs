@@ -8,6 +8,10 @@ namespace FantXC21
 {
     class Race
     {
-        private List<Runner> runners;
+        public List<Runner> runners { get; private set; }
+        public Course course { get; private set; }
+        public TimeSpan timeElapsed { get; private set; }
+
+        public static readonly TimeSpan unitOfTime = new TimeSpan(0, 5, 40);
     }
 }
