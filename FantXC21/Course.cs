@@ -28,10 +28,12 @@ namespace FantXC21
         }
         public TimeSpan courseRecord { get; private set; }
         public string recordHolderName { get; private set; }
+        public int runnerCapacity { get; private set; }
 
-        public Course(string courseName)
+        public Course(string courseName, int runnerCapacity)
         {
             name = courseName;
+            this.runnerCapacity = runnerCapacity;
             segments = new List<SegmentType>();
             random = new Random();
             courseRecord = new TimeSpan(0, 100, 0); //Default course record is laughably slow: 100 minutes

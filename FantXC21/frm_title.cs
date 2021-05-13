@@ -51,7 +51,7 @@ namespace FantXC21
             lbl_weekInfo.Text = "Week #" + season.weekNum.ToString() + " - " + (13 - season.weekNum).ToString() + " races until the championship";
 
             Runner player = season.runners.Where(r => r.isPlayer).FirstOrDefault();
-            bar_championshipPoints.Value = player.getTotalPoints();
+            bar_championshipProgress.Value = player.getTotalPoints();
 
             int numTopThrees = player.getNumTopThreeFinishes();
             if (numTopThrees > 4) { numTopThrees = 4; }

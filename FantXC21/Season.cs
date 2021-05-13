@@ -26,7 +26,7 @@ namespace FantXC21
             workouts = new List<Workout>();
 
             runners.Add(new Runner(Runner.names[0], true));
-            for (int i = 1; i < 99; i += 1)
+            for (int i = 1; i <= 99; i += 1)
             {
                 runners.Add(new Runner(Runner.names[i], false));
             }
@@ -41,9 +41,17 @@ namespace FantXC21
             random = new Random();
             weeks = new List<Week>();
             courses = new List<Course>();
+            int runnerCap;
             for (int i = 0; i < 6; i += 1)
             {
-                courses.Add(new Course(Course.names[i]));
+                switch(i)
+                {
+                    //Runner Capacity is 10, 15, 15, 20, 20, 20 for a total of 100 runners
+                    case 0: runnerCap = 10; break;
+                    case 1: case 2: runnerCap = 15; break;
+                    default: runnerCap = 20; break;
+                }
+                courses.Add(new Course(Course.names[i], runnerCap));
             }
         }
 
@@ -63,9 +71,25 @@ namespace FantXC21
         {
             Week week = new Week(
                 GetWorkoutSelection(),
-                GetWorkoutSelection());
+                GetWorkoutSelection(),
+                courses);
+            week.races[weekNum % 6].AddRunner(runners.Where(p => p.isPlayer).FirstOrDefault());
+            runners.Shuffle(random);
+            int nextRunnerIndex = 0;
+            foreach (Race race in week.races)
+            {
+                while (race.runnerNames.Count < race.course.runnerCapacity)
+                {
+                    if (!runners[nextRunnerIndex].isPlayer)
+                    {
+                        race.AddRunner(runners[nextRunnerIndex]);
+                    }
+                    nextRunnerIndex += 1;
+                }
+            }
 
             weeks.Add(week);
+            
         }
 
         public List<Workout> GetWorkoutSelection()
