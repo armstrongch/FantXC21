@@ -60,10 +60,10 @@
             this.lbl_workoutInfo = new System.Windows.Forms.Label();
             this.btn_workoutInfoToWorkoutsView = new System.Windows.Forms.Button();
             this.pnl_race = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ri_raceImage = new FantXC21.RaceImage();
+            this.lbl_racePlayerStatus = new System.Windows.Forms.Label();
             this.dg_playerHand = new System.Windows.Forms.DataGridView();
             this.lbl_raceInfo = new System.Windows.Forms.Label();
-            this.ri_raceImage = new FantXC21.RaceImage();
             this.pnl_titleScreen.SuspendLayout();
             this.pnl_workout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_workoutSelection)).BeginInit();
@@ -74,8 +74,8 @@
             this.pnl_workoutInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_workoutInfo)).BeginInit();
             this.pnl_race.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_playerHand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ri_raceImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_playerHand)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_titleScreen
@@ -426,7 +426,7 @@
             // pnl_race
             // 
             this.pnl_race.Controls.Add(this.ri_raceImage);
-            this.pnl_race.Controls.Add(this.label1);
+            this.pnl_race.Controls.Add(this.lbl_racePlayerStatus);
             this.pnl_race.Controls.Add(this.dg_playerHand);
             this.pnl_race.Controls.Add(this.lbl_raceInfo);
             this.pnl_race.Location = new System.Drawing.Point(13, 12);
@@ -434,14 +434,23 @@
             this.pnl_race.Size = new System.Drawing.Size(776, 429);
             this.pnl_race.TabIndex = 3;
             // 
-            // label1
+            // ri_raceImage
             // 
-            this.label1.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(0, 257);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(390, 172);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "lbl_raceInfo";
+            this.ri_raceImage.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ri_raceImage.Location = new System.Drawing.Point(397, 27);
+            this.ri_raceImage.Name = "ri_raceImage";
+            this.ri_raceImage.Size = new System.Drawing.Size(376, 398);
+            this.ri_raceImage.TabIndex = 4;
+            this.ri_raceImage.TabStop = false;
+            // 
+            // lbl_racePlayerStatus
+            // 
+            this.lbl_racePlayerStatus.Font = new System.Drawing.Font("HP Simplified", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_racePlayerStatus.Location = new System.Drawing.Point(0, 293);
+            this.lbl_racePlayerStatus.Name = "lbl_racePlayerStatus";
+            this.lbl_racePlayerStatus.Size = new System.Drawing.Size(390, 136);
+            this.lbl_racePlayerStatus.TabIndex = 3;
+            this.lbl_racePlayerStatus.Text = "race_player_status_string";
             // 
             // dg_playerHand
             // 
@@ -454,7 +463,7 @@
             this.dg_playerHand.Name = "dg_playerHand";
             this.dg_playerHand.ReadOnly = true;
             this.dg_playerHand.RowTemplate.Height = 25;
-            this.dg_playerHand.Size = new System.Drawing.Size(390, 224);
+            this.dg_playerHand.Size = new System.Drawing.Size(390, 260);
             this.dg_playerHand.TabIndex = 2;
             // 
             // lbl_raceInfo
@@ -466,15 +475,6 @@
             this.lbl_raceInfo.Size = new System.Drawing.Size(776, 23);
             this.lbl_raceInfo.TabIndex = 0;
             this.lbl_raceInfo.Text = "race_course_week_string";
-            // 
-            // ri_raceImage
-            // 
-            this.ri_raceImage.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ri_raceImage.Location = new System.Drawing.Point(397, 27);
-            this.ri_raceImage.Name = "ri_raceImage";
-            this.ri_raceImage.Size = new System.Drawing.Size(376, 398);
-            this.ri_raceImage.TabIndex = 4;
-            this.ri_raceImage.TabStop = false;
             // 
             // frm_game
             // 
@@ -499,8 +499,8 @@
             this.pnl_workoutInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dg_workoutInfo)).EndInit();
             this.pnl_race.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dg_playerHand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ri_raceImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_playerHand)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -538,7 +538,7 @@
         private System.Windows.Forms.ProgressBar btn_seasonStandings;
         private System.Windows.Forms.Label lbl_raceInfo;
         private System.Windows.Forms.DataGridView dg_playerHand;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_racePlayerStatus;
         private RaceImage ri_raceImage;
     }
 }

@@ -50,10 +50,9 @@ namespace FantXC21
 
             lbl_weekInfo.Text = "Week #" + season.weekNum.ToString() + " - " + (13 - season.weekNum).ToString() + " races until the championship";
 
-            Runner player = season.runners.Find(r => r.isPlayer);
-            bar_championshipProgress.Value = player.getTotalPoints();
+            bar_championshipProgress.Value = season.player.getTotalPoints();
 
-            int numTopThrees = player.getNumTopThreeFinishes();
+            int numTopThrees = season.player.getNumTopThreeFinishes();
             if (numTopThrees > 4) { numTopThrees = 4; }
 
             for (int i = 0; i < numTopThrees; i += 1)
@@ -67,10 +66,10 @@ namespace FantXC21
             selectedWorkout = workoutList[0];
             dg_workoutSelection.Rows[0].Selected = true;
 
-            double exhaustionDecimal = 1 + player.exhaustion * 0.1;
+            double exhaustionDecimal = 1 + season.player.exhaustion * 0.1;
             string exhaustionString = exhaustionDecimal.ToString();
 
-            lbl_exhaustionInfo.Text = "Exhaustion: " + player.exhaustion.ToString() + "\n"
+            lbl_exhaustionInfo.Text = "Exhaustion: " + season.player.exhaustion.ToString() + "\n"
                 + "The energy cost of workouts during races will be multiplied by " + exhaustionString + ".";
 
 
@@ -116,9 +115,8 @@ namespace FantXC21
 
         private void setupWorkoutInfoPanel()
         {
-            Runner player = season.runners.Find(p => p.isPlayer);
             List<Workout> playerWorkouts = new List<Workout>();
-            foreach(workoutType type in player.workouts)
+            foreach(workoutType type in season.player.workouts)
             {
                 playerWorkouts.Add(new Workout(type));
             }
@@ -128,8 +126,6 @@ namespace FantXC21
 
         private void setupSeasonStandingInfoPanel()
         {
-            Runner player = season.runners.Find(p => p.isPlayer);
-
             DataTable runners_DT = new DataTable();
             runners_DT.Columns.Add("Name");
             runners_DT.Columns.Add("Points", typeof(int));
@@ -162,11 +158,10 @@ namespace FantXC21
             deckData.Columns.Add("Energy", typeof(int));
             deckData.Columns.Add("Number of Copies", typeof(int));
 
-            Runner player = season.runners.Find(p => p.isPlayer);
             Dictionary<cardType, int> playerCardCount = new Dictionary<cardType, int>();
-            List<cardType> allPlayerCards = player.deck.Concat(player.discard).Concat(player.hand).ToList();
+            List<cardType> allPlayerCards = season.player.deck.Concat(season.player.discard).Concat(season.player.hand).ToList();
             
-            foreach (cardType type in player.deck)
+            foreach (cardType type in season.player.deck)
             {
                 if (playerCardCount.ContainsKey(type))
                 {
@@ -180,7 +175,7 @@ namespace FantXC21
 
             for (int i = 0; i < playerCardCount.Count; i += 1)
             {
-                Card playerCard = player.getModifiedCard(playerCardCount.ElementAt(i).Key);
+                Card playerCard = season.player.getModifiedCard(playerCardCount.ElementAt(i).Key);
                 deckData.Rows.Add(
                     playerCard.name,
                     playerCard.distance,
@@ -216,7 +211,7 @@ namespace FantXC21
 
         private void btn_selectWorkout_Click(object sender, EventArgs e)
         {
-            season.runners.Find(r => r.isPlayer).doWorkout(selectedWorkout);
+            season.player.doWorkout(selectedWorkout);
             if (workoutNum == 1)
             {
                 workoutNum = 2;
@@ -225,7 +220,11 @@ namespace FantXC21
             else
             {
                 season.SelectAndPerformWorkoutsForAllCPURunners();
-                
+                Race displayRace = season.playerRace;
+                ri_raceImage.SetCourse(displayRace.course);
+                lbl_raceInfo.Text = "Race #" + season.weekNum + " at " + displayRace.course.name;
+                season.setupRace(displayRace);
+                lbl_racePlayerStatus.Text = season.getRacePlayerStatus();
                 showPanel(pnl_race.Name);
             }
         }

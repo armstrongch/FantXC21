@@ -73,7 +73,7 @@ namespace FantXC21
                 GetWorkoutSelection(),
                 GetWorkoutSelection(),
                 courses);
-            week.races[weekNum % 6].AddRunner(runners.Find(p => p.isPlayer));
+            week.races[weekNum % 6].AddRunner(player);
             runners.Shuffle(random);
             int nextRunnerIndex = 0;
             foreach (Race race in week.races)
@@ -106,12 +106,98 @@ namespace FantXC21
             return workoutSelection;
         }
 
-        private void setupRace(Race race)
+        public void setupRace(Race race)
         {
             foreach(Runner runner in runners.Where(r => race.runnerNames.Contains(r.name)))
             {
                 runner.PrepareForRace();
             }
+        }
+
+        public Runner player
+        {
+            get
+            {
+                return runners.Find(r => r.isPlayer);
+            }
+        }
+        public Race playerRace
+        {
+            get
+            {
+                return weeks.Last().races.Find(r => r.runnerNames.Contains(player.name));
+            }
+        }
+        public List<Runner> runnersInPlayerRace { 
+            get 
+            { 
+                return runners.Where(r => playerRace.runnerNames.Contains(r.name)).ToList(); 
+            } 
+        }
+        
+        public string getRacePlayerStatus()
+        {
+            int totalRunners = playerRace.runnerNames.Count();
+            
+            int numRunnersAhead = runnersInPlayerRace
+                .Where(r => !r.isPlayer)
+                .Where(r => r.turnStartPosition > player.turnStartPosition).Count();
+            bool tiedForPosition = runnersInPlayerRace
+                .Where(r => r.turnStartPosition == player.turnStartPosition).Count() > 1;
+            List<Runner> packRunners = runnersInPlayerRace
+                 .Where(r => !r.isPlayer)
+                .Where(r => Math.Abs(r.turnStartPosition - player.turnStartPosition) <= 50).ToList();
+            Runner leader = runnersInPlayerRace
+                .OrderBy(r => r.turnStartPosition).Last();
+
+            string statusString = "Energy Remaining: " + player.currentEnergy.ToString();
+            statusString += "\n" + (10000 - player.turnStartPosition).ToString() + " meters from the finish";
+            if (tiedForPosition)
+            {
+                statusString += ", tied for ";
+            }
+            else
+            {
+                statusString += ", in ";
+            }
+            statusString += Utility.ordinal_suffix_of(numRunnersAhead + 1) + " place.";
+
+            if (leader.isPlayer)
+            {
+                statusString += "\nYou are leading the race!";
+            }
+            else
+            {
+                statusString += "\n" + leader.name + " is leading the race, with " + (10000 - leader.turnStartPosition) + " to go.";
+            }
+            if (packRunners.Count() > 0)
+            {
+                statusString += "\nYou are running with a pack of " + packRunners.Count() + ", including: ";
+                string packNameString = "";
+                int packRunnersToList = Math.Min(packRunners.Count(), 6);
+                
+                for (int i = 0; i < packRunnersToList; i += 1)
+                {
+                    packNameString += packRunners[i].name;
+                    if (i < packRunnersToList - 1)
+                    {
+                        packNameString += ", ";
+                        if (i == packRunnersToList - 2)
+                        {
+                            packNameString += "and ";
+                        }
+                    }
+                }
+                statusString += packNameString;
+            }
+            else
+            {
+                statusString += "\nYou are not running with a pack.";
+            }
+
+            statusString += "\nThere are " + player.deck.Count().ToString() + " cards remaining in your deck.";
+
+            return statusString;
         }
 
         private bool isCardValid(cardType type, string runnerName)
