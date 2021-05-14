@@ -14,6 +14,8 @@ namespace FantXC21
 
         public static readonly TimeSpan unitOfTime = new TimeSpan(0, 5, 40);
 
+        public Dictionary<string, TimeSpan> finisherList { get; private set; }
+
         public Race(Course course)
         {
             this.course = course;

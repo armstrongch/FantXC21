@@ -172,7 +172,7 @@ namespace FantXC21
             }
             if (packRunners.Count() > 0)
             {
-                statusString += "\nYou are running with a pack of " + packRunners.Count() + ", including: ";
+                statusString += "\nYou are running with a pack of " + packRunners.Count() + " others, including: ";
                 string packNameString = "";
                 int packRunnersToList = Math.Min(packRunners.Count(), 6);
                 
