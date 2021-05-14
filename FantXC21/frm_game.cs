@@ -220,13 +220,45 @@ namespace FantXC21
             else
             {
                 season.SelectAndPerformWorkoutsForAllCPURunners();
+                
                 Race displayRace = season.playerRace;
                 ri_raceImage.SetCourse(displayRace.course);
+                ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
+                
                 lbl_raceInfo.Text = "Race #" + season.weekNum + " at " + displayRace.course.name;
-                season.setupRace(displayRace);
                 lbl_racePlayerStatus.Text = season.getRacePlayerStatus();
+                
+                season.setupRace(displayRace);
+                startNewRaceTurn();
+                
+                
                 showPanel(pnl_race.Name);
             }
+        }
+
+        private void startNewRaceTurn()
+        {
+            season.startNewRaceTurn(season.playerRace);
+            DataTable handContents = new DataTable();
+            handContents.Columns.Add("Name");
+            handContents.Columns.Add("Distance (meters)", typeof(int));
+            handContents.Columns.Add("Cost (%energy)", typeof(int));
+            handContents.Columns.Add("Description");
+
+
+            foreach(cardType type in season.player.hand)
+            {
+                Card handCard = season.player.getModifiedCard(type);
+                handContents.Rows.Add(
+                    handCard.name,
+                    handCard.distance,
+                    handCard.energy,
+                    handCard.specialText
+                    );
+            }
+
+            dg_playerHand.DataSource = handContents;
+            dg_playerHand.Columns["Description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         private void btn_backFromDeckView_Click(object sender, EventArgs e)

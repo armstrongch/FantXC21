@@ -108,9 +108,17 @@ namespace FantXC21
 
         public void setupRace(Race race)
         {
-            foreach(Runner runner in runners.Where(r => race.runnerNames.Contains(r.name)))
+            foreach(Runner runner in runnersInPlayerRace)
             {
                 runner.PrepareForRace();
+            }
+        }
+
+        public void startNewRaceTurn(Race race)
+        {
+            foreach (Runner runner in runnersInPlayerRace)
+            {
+                runner.startNewTurn();
             }
         }
 
@@ -211,13 +219,13 @@ namespace FantXC21
             switch(type)
             {
                 case cardType.COAST:
-                    int nearbyRunnerCount = runners
+                    int nearbyRunnerCount = runnersInPlayerRace
                         .Where(r => r.name != runnerName)
                         .Where(r => Math.Abs(r.turnStartPosition - runner.turnStartPosition) <= 50)
                         .Count();
                     return nearbyRunnerCount > 0;
                 case cardType.REEL_IN:
-                    List<Runner> runnersLessThan300MetersAhead = runners
+                    List<Runner> runnersLessThan300MetersAhead = runnersInPlayerRace
                         .Where(r => r.name != runnerName)
                         .Where(r => r.turnStartPosition > runner.turnStartPosition)
                         .Where(r => r.turnStartPosition <= runner.turnStartPosition + 300)

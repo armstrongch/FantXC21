@@ -92,13 +92,21 @@ namespace FantXC21
             bonusEnergy = 0;
             deck.AddRange(discard);
             deck.AddRange(hand);
+            deck.RemoveAll(c => c == cardType.FATIGUE);
             discard = new List<cardType>();
             hand = new List<cardType>();
             deck.Shuffle(random);
-            for (int i = 0; i < 3; i += 1)
+            for (int i = 0; i < 2; i += 1)
             {
                 drawCard();
             }
+            hand.Add(cardType.FATIGUE);
+        }
+
+        public void startNewTurn()
+        {
+            turnStartPosition = turnEndPosition;
+            drawCard();
         }
 
         public void drawCard()
