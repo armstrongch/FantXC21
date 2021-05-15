@@ -25,7 +25,7 @@ namespace FantXC21
 
         public Card(cardType type)
         {
-            this.cardType = cardType;
+            this.cardType = type;
             switch (type)
             {
                 case cardType.RUN:

@@ -149,6 +149,27 @@ namespace FantXC21
             }
         }
 
+        public Card selectCard(List<Card> validCards)
+        {
+            switch (cpu_logic.CardSelectionType)
+            {
+                case CardSelectionType.LONGEST_DISTANCE_LOGICAL_KICK:
+                default:
+                    //Card with longest distance, prioritizing lower cost
+                    validCards.OrderBy(c => c.energy / 100 - c.distance);
+                    Card selectedCard = validCards.First();
+                    //If the longest card is a kick, only do it if it will get us over the finish line
+                    if (selectedCard.cardType == cardType.KICK)
+                    {
+                        if ((10000 - turnStartPosition) > selectedCard.distance)
+                        {
+                            selectedCard = validCards[1];
+                        }
+                    }
+                    return selectedCard;
+            }
+        }
+
         public Workout selectWorkout(List<Workout> WorkoutList)
         {
             switch (cpu_logic.WorkoutSelectionType)

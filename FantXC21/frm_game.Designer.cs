@@ -1,4 +1,6 @@
-﻿namespace FantXC21
+﻿using System;
+
+namespace FantXC21
 {
     partial class frm_game
     {
@@ -60,11 +62,11 @@
             this.lbl_workoutInfo = new System.Windows.Forms.Label();
             this.btn_workoutInfoToWorkoutsView = new System.Windows.Forms.Button();
             this.pnl_race = new System.Windows.Forms.Panel();
+            this.btn_selectCardFromHand = new System.Windows.Forms.Button();
             this.ri_raceImage = new FantXC21.RaceImage();
             this.lbl_racePlayerStatus = new System.Windows.Forms.Label();
             this.dg_playerHand = new System.Windows.Forms.DataGridView();
             this.lbl_raceInfo = new System.Windows.Forms.Label();
-            this.btn_selectCardFromHand = new System.Windows.Forms.Button();
             this.pnl_titleScreen.SuspendLayout();
             this.pnl_workout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_workoutSelection)).BeginInit();
@@ -436,6 +438,17 @@
             this.pnl_race.Size = new System.Drawing.Size(776, 429);
             this.pnl_race.TabIndex = 3;
             // 
+            // btn_selectCardFromHand
+            // 
+            this.btn_selectCardFromHand.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_selectCardFromHand.Location = new System.Drawing.Point(-2, 257);
+            this.btn_selectCardFromHand.Name = "btn_selectCardFromHand";
+            this.btn_selectCardFromHand.Size = new System.Drawing.Size(392, 30);
+            this.btn_selectCardFromHand.TabIndex = 5;
+            this.btn_selectCardFromHand.Text = "select_workout_string";
+            this.btn_selectCardFromHand.UseVisualStyleBackColor = true;
+            this.btn_selectCardFromHand.Click += new System.EventHandler(this.btn_selectCardFromHand_Click);
+            // 
             // ri_raceImage
             // 
             this.ri_raceImage.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -467,6 +480,7 @@
             this.dg_playerHand.RowTemplate.Height = 25;
             this.dg_playerHand.Size = new System.Drawing.Size(390, 224);
             this.dg_playerHand.TabIndex = 2;
+            this.dg_playerHand.SelectionChanged += new System.EventHandler(this.dg_playerHand_Changed);
             // 
             // lbl_raceInfo
             // 
@@ -477,16 +491,6 @@
             this.lbl_raceInfo.Size = new System.Drawing.Size(776, 23);
             this.lbl_raceInfo.TabIndex = 0;
             this.lbl_raceInfo.Text = "race_course_week_string";
-            // 
-            // btn_selectCardFromHand
-            // 
-            this.btn_selectCardFromHand.Font = new System.Drawing.Font("HP Simplified", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btn_selectCardFromHand.Location = new System.Drawing.Point(-2, 257);
-            this.btn_selectCardFromHand.Name = "btn_selectCardFromHand";
-            this.btn_selectCardFromHand.Size = new System.Drawing.Size(392, 30);
-            this.btn_selectCardFromHand.TabIndex = 5;
-            this.btn_selectCardFromHand.Text = "select_workout_string";
-            this.btn_selectCardFromHand.UseVisualStyleBackColor = true;
             // 
             // frm_game
             // 

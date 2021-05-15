@@ -67,6 +67,26 @@ namespace FantXC21
             }
         }
 
+        public void SelectAndPlayCardsForAllCPURunnersInRace(Race race)
+        {
+            List<Runner> runnersInRace = runners.Where(r => race.runnerNames.Contains(r.name)).ToList();
+
+            foreach (Runner runner in runnersInRace)
+            {
+                List<Card> cardsInHand = new List<Card>();
+                foreach(cardType type in runner.hand)
+                {
+                    if (isCardValid(type, runner.name))
+                    {
+                        Card handCard = runner.getModifiedCard(type);
+                        cardsInHand.Add(handCard);
+                    }
+                }
+                Card selectedCard = runner.selectCard(cardsInHand);
+                runner.playCard(selectedCard);
+            }
+        }
+
         public void AddWeekToSeason()
         {
             Week week = new Week(
@@ -208,7 +228,7 @@ namespace FantXC21
             return statusString;
         }
 
-        private bool isCardValid(cardType type, string runnerName)
+        public bool isCardValid(cardType type, string runnerName)
         {
             Runner runner = runners.Find(r => r.name == runnerName);
             Card card = runner.getModifiedCard(type);

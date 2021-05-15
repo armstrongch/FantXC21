@@ -14,6 +14,7 @@ namespace FantXC21
     {
         private Season season;
         private Workout selectedWorkout;
+        private Card selectedCard;
         private List<Workout> workoutList;
         private int workoutNum;
 
@@ -71,9 +72,6 @@ namespace FantXC21
 
             lbl_exhaustionInfo.Text = "Exhaustion: " + season.player.exhaustion.ToString() + "\n"
                 + "The energy cost of workouts during races will be multiplied by " + exhaustionString + ".";
-
-
-
         }
 
         private DataTable getWorkoutList_DT(List<Workout> workoutList)
@@ -197,6 +195,18 @@ namespace FantXC21
             MessageBox.Show(championshipStatus);
         }
 
+        private void dg_playerHand_Changed(object sender, EventArgs e)
+        {
+            if (dg_playerHand.SelectedCells.Count > 0)
+            {
+                DataGridViewCell selectedCell = dg_playerHand.SelectedCells[0];
+                DataGridViewRow selectedCellRow = selectedCell.OwningRow;
+                selectedCellRow.Selected = true;
+                selectedCard = selectedCard = selectedCellRow.Cells[4].Value as Card;
+                btn_selectCardFromHand.Text = "Play Card: \"" + selectedCellRow.Cells["Name"].Value;
+                btn_selectCardFromHand.Enabled = season.isCardValid(selectedCard.cardType, season.player.name);
+            }
+        }
         private void dg_workoutSelection_Changed(object sender, EventArgs e)
         {
             if (dg_workoutSelection.SelectedCells.Count > 0)
@@ -226,12 +236,10 @@ namespace FantXC21
                 ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
                 
                 lbl_raceInfo.Text = "Race #" + season.weekNum + " at " + displayRace.course.name;
-                lbl_racePlayerStatus.Text = season.getRacePlayerStatus();
                 
                 season.setupRace(displayRace);
                 startNewRaceTurn();
-                
-                
+
                 showPanel(pnl_race.Name);
             }
         }
@@ -242,23 +250,30 @@ namespace FantXC21
             DataTable handContents = new DataTable();
             handContents.Columns.Add("Name");
             handContents.Columns.Add("Distance (meters)", typeof(int));
-            handContents.Columns.Add("Cost (%energy)", typeof(int));
+            handContents.Columns.Add("Cost (% energy)", typeof(int));
             handContents.Columns.Add("Description");
+            handContents.Columns.Add("Card", typeof(Card));
 
 
             foreach(cardType type in season.player.hand)
             {
                 Card handCard = season.player.getModifiedCard(type);
+
                 handContents.Rows.Add(
                     handCard.name,
                     handCard.distance,
                     handCard.energy,
-                    handCard.specialText
+                    handCard.specialText,
+                    handCard
                     );
             }
 
             dg_playerHand.DataSource = handContents;
             dg_playerHand.Columns["Description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dg_playerHand.Rows[0].Selected = true;
+            dg_playerHand.Columns["Card"].Visible = false;
+            selectedCard = dg_playerHand.Rows[0].Cells[4].Value as Card;
+            lbl_racePlayerStatus.Text = season.getRacePlayerStatus();
         }
 
         private void btn_backFromDeckView_Click(object sender, EventArgs e)
@@ -292,6 +307,23 @@ namespace FantXC21
         private void btn_seasonToWorkoutView_Click(object sender, EventArgs e)
         {
             showPanel(pnl_workout.Name);
+        }
+
+        public void redrawRaceImage()
+        {
+            //Race displayRace = season.playerRace;
+            //ri_raceImage.SetCourse(displayRace.course);
+            //ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
+        }
+
+        private void btn_selectCardFromHand_Click(object sender, EventArgs e)
+        {
+            season.player.playCard(selectedCard);
+            season.SelectAndPlayCardsForAllCPURunnersInRace(season.playerRace);
+            startNewRaceTurn();
+            ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
+            this.Refresh();
+            //TO-DO FIX THIS
         }
     }
 }
