@@ -551,7 +551,6 @@ namespace FantXC21
         private System.Windows.Forms.Button btn_seasonToWorkoutView;
         private System.Windows.Forms.DataGridView dg_seasonStandings;
         private System.Windows.Forms.Panel pnl_race;
-        private System.Windows.Forms.ProgressBar btn_seasonStandings;
         private System.Windows.Forms.Label lbl_raceInfo;
         private System.Windows.Forms.DataGridView dg_playerHand;
         private System.Windows.Forms.Label lbl_racePlayerStatus;

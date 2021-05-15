@@ -69,7 +69,9 @@ namespace FantXC21
 
         public void SelectAndPlayCardsForAllCPURunnersInRace(Race race)
         {
-            List<Runner> runnersInRace = runners.Where(r => race.runnerNames.Contains(r.name)).ToList();
+            List<Runner> runnersInRace = runners
+                .Where(r => race.runnerNames.Contains(r.name))
+                .Where(r => r.turnStartPosition == r.turnEndPosition).ToList();
 
             foreach (Runner runner in runnersInRace)
             {

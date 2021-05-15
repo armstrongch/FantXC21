@@ -323,7 +323,6 @@ namespace FantXC21
             startNewRaceTurn();
             ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
             this.Refresh();
-            //TO-DO FIX THIS
         }
     }
 }

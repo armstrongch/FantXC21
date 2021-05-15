@@ -156,7 +156,7 @@ namespace FantXC21
                 case CardSelectionType.LONGEST_DISTANCE_LOGICAL_KICK:
                 default:
                     //Card with longest distance, prioritizing lower cost
-                    validCards.OrderBy(c => c.energy / 100 - c.distance);
+                    validCards.OrderBy(c => (Double)(c.distance - c.energy / 10));
                     Card selectedCard = validCards.First();
                     //If the longest card is a kick, only do it if it will get us over the finish line
                     if (selectedCard.cardType == cardType.KICK)
@@ -199,6 +199,10 @@ namespace FantXC21
             }
 
             turnEndPosition += card.distance;
+            if (currentEnergy >= 80)
+            {
+                turnEndPosition += bonusDistanceAboveEighty;
+            }
             currentEnergy -= card.energy;
             switch (card.cardType)
             {

@@ -17,6 +17,7 @@ namespace FantXC21
 
         public void SetRunnerPositionList(List<Runner> runnerList)
         {
+            runnerPositionList = new List<int>();
             Runner player = runnerList.Find(r => r.isPlayer);
             playerPosition = player.turnStartPosition;
             foreach (Runner runner in runnerList)
@@ -46,6 +47,8 @@ namespace FantXC21
                 SolidBrush whiteBrush = new SolidBrush(Color.White);
                 SolidBrush lawnGreenBrush = new SolidBrush(Color.LawnGreen);
                 SolidBrush blackBrush = new SolidBrush(Color.Black);
+                SolidBrush redBrush = new SolidBrush(Color.Red);
+                SolidBrush blueBrush = new SolidBrush(Color.Blue);
                 Pen blackPen = new Pen(Color.Black);
                 Pen redPen = new Pen(Color.Red);
 
@@ -122,15 +125,20 @@ namespace FantXC21
                     int courseLength = this.Width - 3 * rect_pad_height;
                     int runnerSize = segment_width * 8 / 10;
 
-                    foreach (int position in runnerPositionList.Where(r => r >= i * 200 && r < (i + 1) * 200))
+                    foreach (int position in runnerPositionList.Where(r => r >= i * 2000 && r < (i + 1) * 2000).Distinct())
                     {
+                        
                         int runnerXPosition = (i % 2 == 0)
-                            ? Convert.ToInt32(Math.Round(rect_pad_height * 1.5 + ((position % 200) / 200) * courseLength))
-                            : Convert.ToInt32(Math.Round(this.Width - rect_pad_height * 1.5 - ((position % 200) / 200) * courseLength));
+                            ? Convert.ToInt32(Math.Round(
+                                rect_pad_height * 1.5 + (courseLength * (position % 2000) / 2000)
+                            ))
+                            : Convert.ToInt32(Math.Round(
+                                this.Width - rect_pad_height * 1.5 - (courseLength * (position % 2000) / 2000)
+                            ));
 
-                        Pen runnerPen = position == playerPosition ? redPen : blackPen;
+                        SolidBrush runnerBrush = position == playerPosition ? redBrush : blueBrush;
 
-                        e.Graphics.DrawEllipse(runnerPen, new Rectangle(
+                        e.Graphics.FillEllipse(runnerBrush, new Rectangle(
                             runnerXPosition - runnerSize / 2,
                             rectangleCenterY - runnerSize / 2,
                             runnerSize,

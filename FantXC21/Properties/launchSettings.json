@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FantXC21": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
