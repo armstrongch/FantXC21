@@ -156,16 +156,16 @@ namespace FantXC21
                 case CardSelectionType.LONGEST_DISTANCE_LOGICAL_KICK:
                 default:
                     //Card with longest distance, prioritizing lower cost
-                    validCards.OrderBy(c => (Double)(c.distance - c.energy / 10));
-                    Card selectedCard = validCards.First();
+                    Card selectedCard = validCards.OrderBy(c => (Double)(c.energy / 5 - c.distance)).First();
                     //If the longest card is a kick, only do it if it will get us over the finish line
                     if (selectedCard.cardType == cardType.KICK)
                     {
                         if ((10000 - turnStartPosition) > selectedCard.distance)
                         {
-                            selectedCard = validCards[1];
+                            selectedCard = validCards.OrderBy(c => (Double)(c.energy / 5 - c.distance)).ToList()[1];
                         }
                     }
+                    System.Diagnostics.Debug.WriteLine(name + " has " + currentEnergy.ToString() + " energy remaining and selects " + selectedCard.name);
                     return selectedCard;
             }
         }
