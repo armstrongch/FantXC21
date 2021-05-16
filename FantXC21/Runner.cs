@@ -122,7 +122,7 @@ namespace FantXC21
         {
             int distanceMod = cardDistanceModifiers.ContainsKey(type) ? cardDistanceModifiers[type] : 0;
             int costMod = cardEnergyModifiers.ContainsKey(type) ? cardEnergyModifiers[type] : 0;
-            return new Card(type, distanceMod, costMod);
+            return new Card(type, distanceMod, costMod, exhaustion);
         }
 
         private void updateEnergyModifier(cardType type, int modifier)

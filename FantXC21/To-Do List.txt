@@ -1,2 +1,4 @@
 ﻿1. Show Course Records somewhere
 2. Add raceresults to runners after finishing
+3. There's a bug where sometimes the game will claim that there are no valid cards in hand, and break when trying to select one.
+4. Simulate all of the other races

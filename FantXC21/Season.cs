@@ -76,16 +76,16 @@ namespace FantXC21
 
             foreach (Runner runner in runnersInRace)
             {
-                List<Card> cardsInHand = new List<Card>();
+                List<Card> validCardsInHand = new List<Card>();
                 foreach(cardType type in runner.hand)
                 {
                     if (isCardValid(type, runner.name))
                     {
                         Card handCard = runner.getModifiedCard(type);
-                        cardsInHand.Add(handCard);
+                        validCardsInHand.Add(handCard);
                     }
                 }
-                Card selectedCard = runner.selectCard(cardsInHand);
+                Card selectedCard = runner.selectCard(validCardsInHand);
                 runner.playCard(selectedCard);
             }
         }

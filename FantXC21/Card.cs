@@ -73,10 +73,11 @@ namespace FantXC21
             }
         }
 
-        public Card(cardType type, int modifiedDistance, int modifiedCost) : this(type)
+        public Card(cardType type, int modifiedDistance, int modifiedCost, int exhaustion) : this(type)
         {
             this.distance += modifiedDistance;
             this.energy += modifiedCost;
+            this.energy = Convert.ToInt32(Math.Round((1 + exhaustion * 0.1) * this.energy));
         }
     }
 }

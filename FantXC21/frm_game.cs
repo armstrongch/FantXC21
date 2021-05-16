@@ -370,8 +370,9 @@ namespace FantXC21
 
             for (int i = 0; i < localFinisherList.Count; i += 1)
             {
+                string finisherName = localFinisherList.ElementAt(i).Key;
                 raceResultsDataTable.Rows.Add(
-                    localFinisherList.ElementAt(i).Key,
+                    finisherName == season.player.name ? finisherName + " (You)" : finisherName,
                     i+1,
                     localFinisherList.ElementAt(i).Value);
             }
