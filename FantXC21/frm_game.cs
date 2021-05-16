@@ -329,8 +329,54 @@ namespace FantXC21
                     startNewRaceTurn();
                     ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
                 }
+                setupRaceResultPanel();
                 showPanel(pnl_raceResults.Name);
             }
+        }
+
+        private void setupRaceResultPanel()
+        {
+            lbl_raceResults.Text = "Week " + season.weekNum.ToString() + " Race Results";
+            lbl_playerRaceResults.Text = "You finished the race with " + season.player.currentEnergy.ToString()
+                + " energy, accumulating " + Runner.exhaustionAccumulated(season.player.currentEnergy).ToString() + " exhaustion.";
+            
+            cb_racePicker.Items.Clear();
+            foreach(Race race in season.weeks.Last().races)
+            {
+
+                cb_racePicker.Items.Add(race.course.name);
+            }
+            cb_racePicker.SelectedIndex = cb_racePicker.Items.IndexOf(season.playerRace.course.name);
+
+            dg_raceResults.DataSource = getRaceResultsDataTable(
+                season.weeks.Last().races.Find(r => r.course.name == cb_racePicker.SelectedItem.ToString()));
+        }
+
+        private void cb_racePicker_OnValueChanged(object sender, EventArgs e)
+        {
+            dg_raceResults.DataSource = getRaceResultsDataTable(
+                            season.weeks.Last().races.Find(r => r.course.name == cb_racePicker.SelectedItem.ToString()));
+        }
+
+        private DataTable getRaceResultsDataTable(Race race)
+        {
+            DataTable raceResultsDataTable = new DataTable();
+            raceResultsDataTable.Columns.Add("Name");
+            raceResultsDataTable.Columns.Add("Position", typeof(int));
+            raceResultsDataTable.Columns.Add("Time", typeof(TimeSpan));
+
+            Dictionary<string, TimeSpan> localFinisherList = 
+                race.finisherList.OrderBy(d => d.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            for (int i = 0; i < localFinisherList.Count; i += 1)
+            {
+                raceResultsDataTable.Rows.Add(
+                    localFinisherList.ElementAt(i).Key,
+                    i+1,
+                    localFinisherList.ElementAt(i).Value);
+            }
+
+            return raceResultsDataTable;
         }
     }
 }

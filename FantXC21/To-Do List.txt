@@ -1,0 +1,2 @@
+﻿1. Show Course Records somewhere
+2. Add raceresults to runners after finishing

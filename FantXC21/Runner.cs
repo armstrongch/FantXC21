@@ -171,7 +171,7 @@ namespace FantXC21
 
         internal void finishRace(TimeSpan finishTime)
         {
-            exhaustion += Convert.ToInt32(Math.Floor((50 - currentEnergy) * 0.1));
+            exhaustion += Runner.exhaustionAccumulated(currentEnergy);
             if (finishTime < personalBest)
             {
                 personalBest = finishTime;
@@ -188,8 +188,7 @@ namespace FantXC21
                     {
                         List<Workout> nonRecoveryWorkouts = WorkoutList.Where(w => w.cost > 0).ToList();
                         nonRecoveryWorkouts.Shuffle(random);
-                        return WorkoutList.Find(w => w.cost > 0);
-
+                        return nonRecoveryWorkouts.Find(w => w.cost > 0);
                     }
                     else
                     {
@@ -225,6 +224,8 @@ namespace FantXC21
 
         public void doWorkout(Workout workout)
         {
+            System.Diagnostics.Debug.WriteLine(this.name + " chooses " + workout.name);
+
             int calculatedExhaustion = workout.cost - exhaustionReduction;
             if (calculatedExhaustion > 0)
             {
@@ -318,6 +319,13 @@ namespace FantXC21
             return numTopThrees;
         }
 
+        public static int exhaustionAccumulated(int energy)
+        {
+            return Convert.ToInt32(
+                Math.Max(Math.Floor((50 - energy) * 0.1), 0)
+                );
+        }
+
         public static readonly string[] names = {
             "Armstrong", "Johnson ", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor",
             "Anderson", "Thomas", "Jackson", "White", "Harris", "Martin", "Thompson", "Garcia", "Martinez", "Robinson",
@@ -330,6 +338,4 @@ namespace FantXC21
             "Henderson", "Coleman", "Jenkins", "Perry", "Powell", "Long", "Patterson", "Hughes", "Flores", "Washington",
             "Butler", "Simmons", "Foster", "Gonzales", "Bryant", "Alexander", "Russell", "Griffin", "Diaz", "Hayes" };
     }
-
-    
 }
