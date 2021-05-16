@@ -71,7 +71,8 @@ namespace FantXC21
         {
             List<Runner> runnersInRace = runners
                 .Where(r => race.runnerNames.Contains(r.name))
-                .Where(r => r.turnStartPosition == r.turnEndPosition).ToList();
+                .Where(r => r.turnStartPosition < 10000)
+                .Where(r => r.isPlayer == false).ToList();
 
             foreach (Runner runner in runnersInRace)
             {
@@ -138,10 +139,29 @@ namespace FantXC21
 
         public void startNewRaceTurn(Race race)
         {
-            foreach (Runner runner in runnersInPlayerRace)
+            foreach (Runner runner in runners.Where(r => race.runnerNames.Contains(r.name)))
             {
                 runner.startNewTurn();
             }
+        }
+
+        public void endRaceTurn(Race race)
+        {
+            foreach (Runner runner in runners.Where(r => race.runnerNames.Contains(r.name)).Where(r => race.finisherList.ContainsKey(r.name) == false))
+            {
+                if (runner.turnEndPosition >= 10000)
+                {
+                    int distanceTravelledThisTurn = runner.turnEndPosition - runner.turnStartPosition;
+                    int distanceFromStartTo10k = 10000 - runner.turnStartPosition;
+                    long percentageOfTurnDistanceRaceEnded = distanceFromStartTo10k / distanceTravelledThisTurn;
+
+                    TimeSpan finishTime = race.timeElapsed.Add(new TimeSpan(Race.unitOfTime.Ticks * percentageOfTurnDistanceRaceEnded));
+                    
+                    race.finisherList.Add(runner.name, finishTime);
+                    runner.finishRace(finishTime);
+                }
+            }
+            race.EndRaceTurn();
         }
 
         public Runner player

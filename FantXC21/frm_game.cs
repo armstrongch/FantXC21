@@ -309,20 +309,28 @@ namespace FantXC21
             showPanel(pnl_workout.Name);
         }
 
-        public void redrawRaceImage()
-        {
-            //Race displayRace = season.playerRace;
-            //ri_raceImage.SetCourse(displayRace.course);
-            //ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
-        }
-
         private void btn_selectCardFromHand_Click(object sender, EventArgs e)
         {
             season.player.playCard(selectedCard);
-            season.SelectAndPlayCardsForAllCPURunnersInRace(season.playerRace);
-            startNewRaceTurn();
-            ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
-            this.Refresh();
+            if (season.player.turnEndPosition < 10000)
+            {
+                season.SelectAndPlayCardsForAllCPURunnersInRace(season.playerRace);
+                season.endRaceTurn(season.playerRace);
+                startNewRaceTurn();
+                ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
+                this.Refresh();
+            }
+            else
+            {
+                while (season.playerRace.finisherList.Count < season.playerRace.runnerNames.Count)
+                {
+                    season.SelectAndPlayCardsForAllCPURunnersInRace(season.playerRace);
+                    season.endRaceTurn(season.playerRace);
+                    startNewRaceTurn();
+                    ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
+                }
+                showPanel(pnl_raceResults.Name);
+            }
         }
     }
 }

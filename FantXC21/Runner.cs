@@ -165,8 +165,16 @@ namespace FantXC21
                             selectedCard = validCards.OrderBy(c => (Double)(c.energy / 5 - c.distance)).ToList()[1];
                         }
                     }
-                    System.Diagnostics.Debug.WriteLine(name + " has " + currentEnergy.ToString() + " energy remaining and selects " + selectedCard.name);
                     return selectedCard;
+            }
+        }
+
+        internal void finishRace(TimeSpan finishTime)
+        {
+            exhaustion += Convert.ToInt32(Math.Floor((50 - currentEnergy) * 0.1));
+            if (finishTime < personalBest)
+            {
+                personalBest = finishTime;
             }
         }
 

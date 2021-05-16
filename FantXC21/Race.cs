@@ -21,11 +21,17 @@ namespace FantXC21
             this.course = course;
             timeElapsed = new TimeSpan(0, 0, 0);
             runnerNames = new List<string>();
+            finisherList = new Dictionary<string, TimeSpan>();
         }
 
         public void AddRunner(Runner runner)
         {
             runnerNames.Add(runner.name);
+        }
+
+        public void EndRaceTurn()
+        {
+            timeElapsed += unitOfTime;
         }
     }
 }
