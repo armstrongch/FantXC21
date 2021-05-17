@@ -56,7 +56,7 @@ namespace FantXC21
 
             lbl_weekInfo.Text = "Week #" + season.weekNum.ToString() + " - " + (13 - season.weekNum).ToString() + " races until the championship";
 
-            bar_championshipProgress.Value = season.player.getTotalPoints();
+            bar_championshipProgress.Value = Math.Min(season.player.getTotalPoints(), bar_championshipProgress.Maximum);
 
             int numTopThrees = season.player.getNumTopThreeFinishes();
             if (numTopThrees > 4) { numTopThrees = 4; }
@@ -73,7 +73,7 @@ namespace FantXC21
             dg_workoutSelection.Rows[0].Selected = true;
 
             double exhaustionDecimal = 1 + season.player.exhaustion * 0.1;
-            string exhaustionString = exhaustionDecimal.ToString();
+            string exhaustionString = String.Format("{0:0.0}", exhaustionDecimal);
 
             lbl_exhaustionInfo.Text = "Exhaustion: " + season.player.exhaustion.ToString() + "\n"
                 + "The energy cost of workouts during races will be multiplied by " + exhaustionString + ".";
@@ -244,7 +244,7 @@ namespace FantXC21
                 
                 season.setupRace(displayRace);
                 startNewRaceTurn();
-
+                this.Refresh();
                 showPanel(pnl_race.Name);
             }
         }
@@ -396,6 +396,7 @@ namespace FantXC21
 
         private void btn_finishViewingRaceResults_Click(object sender, EventArgs e)
         {
+            season.AddWeekToSeason();
             setupWorkoutPanel(season.weeks.Last().WorkoutSelection_One);
             workoutNum = 1;
             showPanel(pnl_workout.Name);

@@ -190,7 +190,7 @@ namespace FantXC21
             this.lbl_qualificationInfo.Size = new System.Drawing.Size(175, 80);
             this.lbl_qualificationInfo.TabIndex = 9;
             this.lbl_qualificationInfo.Text = "To qualify for the championship, finish in 3rd place or better in 4 different rac" +
-    "es or accumulate 140 total points to qualify.";
+    "es or accumulate " + Season.pointsToQualify + " total points to qualify.";
             // 
             // btn_viewWorkouts
             // 
@@ -282,7 +282,7 @@ namespace FantXC21
             // bar_championshipProgress
             // 
             this.bar_championshipProgress.Location = new System.Drawing.Point(0, 110);
-            this.bar_championshipProgress.Maximum = 160;
+            this.bar_championshipProgress.Maximum = Season.pointsToQualify;
             this.bar_championshipProgress.Name = "bar_championshipProgress";
             this.bar_championshipProgress.Size = new System.Drawing.Size(176, 23);
             this.bar_championshipProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;

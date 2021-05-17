@@ -78,6 +78,7 @@ namespace FantXC21
             this.distance += modifiedDistance;
             this.energy += modifiedCost;
             this.energy = Convert.ToInt32(Math.Round((1 + exhaustion * 0.1) * this.energy));
+            this.energy = Convert.ToInt32(Math.Max(this.energy, 0));
         }
     }
 }

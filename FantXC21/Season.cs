@@ -8,20 +8,25 @@ namespace FantXC21
 {
     class Season
     {
-        public int weekNum { get; private set; }
+        public int weekNum {
+            get {
+                return this.weeks.Count();
+            } 
+            set { }
+        }
         public List<Week> weeks { get; private set; }
         public List<Runner> runners { get; private set; }
         public List<Course> courses { get; private set; }
 
+        public const int pointsToQualify = 140;
+
         private List<Workout> workouts;
         public Random random;
 
-        public const int pointsToQualify = 140;
         public const int numTopThreeFinishesToQualify = 4;
         
         public Season()
         {
-            weekNum = 1;
             runners = new List<Runner>();
             workouts = new List<Workout>();
 

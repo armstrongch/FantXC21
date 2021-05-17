@@ -1,1 +1,1 @@
-﻿1. Add raceresults to runners after finishing
+﻿1. Weird bug where runners appear @ the end of the race at the start. Seems to be just visual
