@@ -47,6 +47,11 @@ namespace FantXC21
 
         private void setupWorkoutPanel(List<Workout> workoutList)
         {
+            foreach(Runner runner in season.runners)
+            {
+                runner.resetDeck();
+            }
+            
             this.workoutList = workoutList;
 
             lbl_weekInfo.Text = "Week #" + season.weekNum.ToString() + " - " + (13 - season.weekNum).ToString() + " races until the championship";
@@ -383,10 +388,17 @@ namespace FantXC21
                 raceResultsDataTable.Rows.Add(
                     finisherName == season.player.name ? finisherName + " (You)" : finisherName,
                     i+1,
-                    race.sortedFinisherList.ElementAt(i));
+                    race.finisherList[race.sortedFinisherList.ElementAt(i)]);
             }
 
             return raceResultsDataTable;
+        }
+
+        private void btn_finishViewingRaceResults_Click(object sender, EventArgs e)
+        {
+            setupWorkoutPanel(season.weeks.Last().WorkoutSelection_One);
+            workoutNum = 1;
+            showPanel(pnl_workout.Name);
         }
     }
 }

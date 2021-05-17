@@ -39,6 +39,7 @@ namespace FantXC21
 
         internal void sortFinisherList()
         {
+            sortedFinisherList = new List<string>();
             foreach(var item in finisherList.OrderBy(d => d.Value).ToList())
             {
                 sortedFinisherList.Add(item.Key);

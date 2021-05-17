@@ -523,6 +523,7 @@ namespace FantXC21
             this.btn_finishViewingRaceResults.TabIndex = 4;
             this.btn_finishViewingRaceResults.Text = "Continue";
             this.btn_finishViewingRaceResults.UseVisualStyleBackColor = true;
+            this.btn_finishViewingRaceResults.Click += new System.EventHandler(this.btn_finishViewingRaceResults_Click);
             // 
             // dg_raceResults
             // 

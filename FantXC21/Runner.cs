@@ -83,6 +83,15 @@ namespace FantXC21
             random = new Random();
         }
 
+        public void resetDeck()
+        {
+            deck.AddRange(discard);
+            deck.AddRange(hand);
+            deck.RemoveAll(c => c == cardType.FATIGUE);
+            discard = new List<cardType>();
+            hand = new List<cardType>();
+        }
+
         //Only call this when actually prepping for a race, or you'll wipe out the bonus energy. This shouldn't be a general-purpose reset
         public void PrepareForRace()
         {
@@ -90,11 +99,6 @@ namespace FantXC21
             turnEndPosition = 0;
             currentEnergy = startingEnergy + bonusEnergy;
             bonusEnergy = 0;
-            deck.AddRange(discard);
-            deck.AddRange(hand);
-            deck.RemoveAll(c => c == cardType.FATIGUE);
-            discard = new List<cardType>();
-            hand = new List<cardType>();
             deck.Shuffle(random);
             for (int i = 0; i < 2; i += 1)
             {

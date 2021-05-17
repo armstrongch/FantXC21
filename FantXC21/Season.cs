@@ -218,7 +218,7 @@ namespace FantXC21
             Runner leader = runnersInPlayerRace
                 .OrderBy(r => r.turnStartPosition).Last();
 
-            string statusString = "Energy Remaining: " + player.currentEnergy.ToString();
+            string statusString = "Energy Remaining: " + player.currentEnergy.ToString() + "%";
             statusString += "\n" + (10000 - player.turnStartPosition).ToString() + " meters from the finish";
             if (tiedForPosition)
             {
