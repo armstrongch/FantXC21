@@ -15,6 +15,9 @@ namespace FantXC21
         public static readonly TimeSpan unitOfTime = new TimeSpan(0, 5, 40);
 
         public Dictionary<string, TimeSpan> finisherList { get; private set; }
+        //Instead of just sorting the existing list, we are going to create a new list at the end of the race,
+        // so that this will break if we try to award points before sorting the finishers
+        public List<string> sortedFinisherList { get; private set; }
 
         public Race(Course course)
         {
@@ -32,6 +35,14 @@ namespace FantXC21
         public void EndRaceTurn()
         {
             timeElapsed += unitOfTime;
+        }
+
+        internal void sortFinisherList()
+        {
+            foreach(var item in finisherList.OrderBy(d => d.Value).ToList())
+            {
+                sortedFinisherList.Add(item.Key);
+            }
         }
     }
 }

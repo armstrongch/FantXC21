@@ -329,25 +329,36 @@ namespace FantXC21
                     startNewRaceTurn();
                     ri_raceImage.SetRunnerPositionList(season.runnersInPlayerRace);
                 }
+                foreach(Race race in season.weeks.Last().races.Where(r => !r.runnerNames.Contains(season.player.name)))
+                {
+                    season.simulateFullRace(race);
+                }
                 setupRaceResultPanel();
                 showPanel(pnl_raceResults.Name);
             }
         }
 
+        private string getLbl_playerRaceResultsText()
+        {
+            Course currentCourse = season.courses.Find(c => c.name == cb_racePicker.SelectedItem.ToString());
+            return "You finished the race with " + season.player.currentEnergy.ToString()
+                + " energy, accumulating " + Runner.exhaustionAccumulated(season.player.currentEnergy).ToString() + " exhaustion."
+                + "\n" + currentCourse.name + " course record: " + currentCourse.courseRecord.ToString();
+        }
+
         private void setupRaceResultPanel()
         {
             lbl_raceResults.Text = "Week " + season.weekNum.ToString() + " Race Results";
-            lbl_playerRaceResults.Text = "You finished the race with " + season.player.currentEnergy.ToString()
-                + " energy, accumulating " + Runner.exhaustionAccumulated(season.player.currentEnergy).ToString() + " exhaustion.";
             
             cb_racePicker.Items.Clear();
-            foreach(Race race in season.weeks.Last().races)
+            foreach(Course course in season.courses)
             {
 
-                cb_racePicker.Items.Add(race.course.name);
+                cb_racePicker.Items.Add(course.name);
             }
             cb_racePicker.SelectedIndex = cb_racePicker.Items.IndexOf(season.playerRace.course.name);
-
+            
+            lbl_playerRaceResults.Text = getLbl_playerRaceResultsText();
             dg_raceResults.DataSource = getRaceResultsDataTable(
                 season.weeks.Last().races.Find(r => r.course.name == cb_racePicker.SelectedItem.ToString()));
         }
@@ -356,6 +367,7 @@ namespace FantXC21
         {
             dg_raceResults.DataSource = getRaceResultsDataTable(
                             season.weeks.Last().races.Find(r => r.course.name == cb_racePicker.SelectedItem.ToString()));
+            lbl_playerRaceResults.Text = getLbl_playerRaceResultsText();
         }
 
         private DataTable getRaceResultsDataTable(Race race)
@@ -365,16 +377,13 @@ namespace FantXC21
             raceResultsDataTable.Columns.Add("Position", typeof(int));
             raceResultsDataTable.Columns.Add("Time", typeof(TimeSpan));
 
-            Dictionary<string, TimeSpan> localFinisherList = 
-                race.finisherList.OrderBy(d => d.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
-
-            for (int i = 0; i < localFinisherList.Count; i += 1)
+            for (int i = 0; i < race.sortedFinisherList.Count; i += 1)
             {
-                string finisherName = localFinisherList.ElementAt(i).Key;
+                string finisherName = race.sortedFinisherList.ElementAt(i);
                 raceResultsDataTable.Rows.Add(
                     finisherName == season.player.name ? finisherName + " (You)" : finisherName,
                     i+1,
-                    localFinisherList.ElementAt(i).Value);
+                    race.sortedFinisherList.ElementAt(i));
             }
 
             return raceResultsDataTable;

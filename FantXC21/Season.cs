@@ -131,7 +131,7 @@ namespace FantXC21
 
         public void setupRace(Race race)
         {
-            foreach(Runner runner in runnersInPlayerRace)
+            foreach(Runner runner in runners.Where(r => race.runnerNames.Contains(r.name)))
             {
                 runner.PrepareForRace();
             }
@@ -162,6 +162,24 @@ namespace FantXC21
                 }
             }
             race.EndRaceTurn();
+            if (race.finisherList.Count == race.runnerNames.Count)
+            {
+                race.course.updateCourseRecord(race.finisherList);
+                race.sortFinisherList();
+                addRaceResults(race);
+            }
+        }
+
+        private void addRaceResults(Race race)
+        {
+            foreach (Runner runner in runners.Where(r => race.runnerNames.Contains(r.name)))
+            {
+                RaceResults result = new RaceResults(
+                    race.sortedFinisherList.IndexOf(runner.name) + 1,
+                    race.sortedFinisherList.Count
+                );
+                runner.AddRaceResult(result);
+            }
         }
 
         public Runner player
@@ -246,6 +264,7 @@ namespace FantXC21
             }
 
             statusString += "\nThere are " + player.deck.Count().ToString() + " cards remaining in your deck.";
+            statusString += "\nElapsed Time: " + playerRace.timeElapsed.ToString();
 
             return statusString;
         }
@@ -274,6 +293,17 @@ namespace FantXC21
                         .ToList();
                     return runnersLessThan300MetersAhead.Count > 0;
                 default: return true;
+            }
+        }
+
+        public void simulateFullRace(Race race)
+        {
+            setupRace(race);
+            while (race.finisherList.Count < race.runnerNames.Count)
+            {
+                startNewRaceTurn(race);
+                SelectAndPlayCardsForAllCPURunnersInRace(race);
+                endRaceTurn(race);
             }
         }
     }

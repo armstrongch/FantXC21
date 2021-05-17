@@ -77,6 +77,17 @@ namespace FantXC21
             }
         }
         
+        public void updateCourseRecord(Dictionary<string, TimeSpan> finisherList)
+        {
+            for (int i = 0; i < finisherList.Count; i += 1)
+            {
+                if (finisherList.ElementAt(i).Value < courseRecord)
+                {
+                    courseRecord = finisherList.ElementAt(i).Value;
+                }
+            }
+        }
+
         public static readonly string[] names = {
             "Heathcliff University", "Salem Reservoir", "Sawmill Park", "Camp Burkewood", "Goat Bridge Mountain", "Carter State Forest"
         };

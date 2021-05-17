@@ -169,13 +169,18 @@ namespace FantXC21
             }
         }
 
-        internal void finishRace(TimeSpan finishTime)
+        public void finishRace(TimeSpan finishTime)
         {
             exhaustion += Runner.exhaustionAccumulated(currentEnergy);
             if (finishTime < personalBest)
             {
                 personalBest = finishTime;
             }
+        }
+
+        public void AddRaceResult(RaceResults result)
+        {
+            raceResults.Add(result);
         }
 
         public Workout selectWorkout(List<Workout> WorkoutList)
@@ -203,6 +208,8 @@ namespace FantXC21
             {
                 hand.Remove(card.cardType);
                 discard.Add(card.cardType);
+
+                System.Diagnostics.Debug.WriteLine(this.name + " plays " + card.name + ". The last card in the discard is " + discard.Last().ToString());
             }
 
             turnEndPosition += card.distance;
@@ -276,8 +283,11 @@ namespace FantXC21
                     Array cardTypes = Enum.GetValues(typeof(cardType));
                     foreach (cardType cardType in cardTypes)
                     {
-                        updateDistanceModifier(cardType, 200);
-                        updateEnergyModifier(cardType, 5);
+                        if (cardType != cardType.FATIGUE)
+                        {
+                            updateDistanceModifier(cardType, 200);
+                            updateEnergyModifier(cardType, 5);
+                        }
                     }
                     break;
                 case workoutType.COMPOUND_SETS:

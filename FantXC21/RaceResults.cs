@@ -10,7 +10,11 @@ namespace FantXC21
     {
         public int finishPosition {get; private set;}
         public int numberOfRunners { get; private set; }
-        public int remainingEnergy { get; private set; }
-        public int distanceAheadOfNextPlace { get; private set; }
+
+        public RaceResults(int finishPosition, int numberOfRunners)
+        {
+            this.finishPosition = finishPosition;
+            this.numberOfRunners = numberOfRunners;
+        }
     }
 }
