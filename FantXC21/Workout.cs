@@ -119,7 +119,7 @@ namespace FantXC21
                 case workoutType.STEADY_VOLUME:
                     name = "Steady Volume";
                     cost = 3;
-                    text = "Reduce exhaustion from workouts and races by 0.10";
+                    text = "Reduce exhaustion from workouts and races by 1";
                     break;
             }
         }
