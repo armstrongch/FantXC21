@@ -29,7 +29,10 @@ namespace FantXC21
 
         public void AddRunner(Runner runner)
         {
-            runnerNames.Add(runner.name);
+            if (runner != null)
+            {
+                runnerNames.Add(runner.name);
+            }  
         }
 
         public void EndRaceTurn()

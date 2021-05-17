@@ -278,6 +278,7 @@ namespace FantXC21
         {
             Runner runner = runners.Find(r => r.name == runnerName);
             Card card = runner.getModifiedCard(type);
+            Race race = weeks.Last().races.Find(r => r.runnerNames.Contains(runnerName));
             if (card.energy > runner.currentEnergy)
             {
                 return false;
@@ -285,13 +286,15 @@ namespace FantXC21
             switch(type)
             {
                 case cardType.COAST:
-                    int nearbyRunnerCount = runnersInPlayerRace
+                    int nearbyRunnerCount = runners
+                        .Where(r => race.runnerNames.Contains(r.name))
                         .Where(r => r.name != runnerName)
                         .Where(r => Math.Abs(r.turnStartPosition - runner.turnStartPosition) <= 50)
                         .Count();
                     return nearbyRunnerCount > 0;
                 case cardType.REEL_IN:
-                    List<Runner> runnersLessThan300MetersAhead = runnersInPlayerRace
+                    List<Runner> runnersLessThan300MetersAhead = runners
+                        .Where(r => race.runnerNames.Contains(r.name))
                         .Where(r => r.name != runnerName)
                         .Where(r => r.turnStartPosition > runner.turnStartPosition)
                         .Where(r => r.turnStartPosition <= runner.turnStartPosition + 300)

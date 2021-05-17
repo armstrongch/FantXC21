@@ -20,10 +20,29 @@ namespace FantXC21
 
         public frm_game()
         {
-            season = new Season();
-            season.AddWeekToSeason();
             InitializeComponent();
-            showPanel(pnl_titleScreen.Name);
+            if (1 == 2) //this should be 1 == 1 unless we're testing
+            {
+                season = new Season();
+                season.AddWeekToSeason();
+                showPanel(pnl_titleScreen.Name);
+            }
+            else //test
+            {
+                season = new Season();
+                season.runners.RemoveAt(0); //the first runner should be the player
+                season.runners.Add(new Runner("Armstrong", false)); //replace that MF with a CPU
+                for (int i = 0; i < 12; i += 1)
+                {
+                    season.AddWeekToSeason();
+                    season.SelectAndPerformWorkoutsForAllCPURunners();
+                    foreach (Race race in season.weeks.Last().races)
+                    {
+                        season.setupRace(race);
+                        season.simulateFullRace(race);
+                    }
+                }
+            }
         }
 
         private void btn_start_Click(object sender, EventArgs e)
